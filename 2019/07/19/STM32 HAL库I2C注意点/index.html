@@ -270,23 +270,22 @@
     <div class="card-content">
         <h3 class="title is-5 has-text-weight-normal">Comments</h3>
         
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
-    var disqus_config = function () {
-        this.page.url = 'http://jifachn.github.io/2019/07/19/STM32 HAL库I2C注意点/';
-        this.page.identifier = '2019/07/19/STM32 HAL库I2C注意点/';
-    };
-    (function() {
-        var d = document, s = d.createElement('script');  
-        s.src = '//' + 'jifanchn' + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
+	var gitment = new Gitment({
+		id: 'ad68ba0eeaae92f4411c3bf0dec6eefc',
+		owner: 'jifanchn',
+		repo: 'jifanchn.github.io',
+		oauth: {
+			client_id: '6fa1959ea7aa2366de77',
+			client_secret: '3e1671d3639b249b5c4bd727be54dd00b6525c66',
+		},
+	})
+	gitment.render('comment-container')
 </script>
 
-<div id="disqus_thread">
-    
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
     </div>
 </div>
 </div>

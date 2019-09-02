@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>抢占式任务配置 - 十几秒的光照</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+    <meta name="description" content="背景 以前做项目使用Raspberry PI CM3 + RT Preempt做实时控制，这部分需要对系统和任务进行特殊的配置。">
+<meta name="keywords" content="RaspberryPI,嵌入式,技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="抢占式任务配置">
+<meta property="og:url" content="http://jifachn.github.io/2019/07/21/抢占式任务配置/index.html">
+<meta property="og:site_name" content="十几秒的光照">
+<meta property="og:description" content="背景 以前做项目使用Raspberry PI CM3 + RT Preempt做实时控制，这部分需要对系统和任务进行特殊的配置。">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://jifachn.github.io/images/raspberry.jpg">
+<meta property="og:updated_time" content="2019-09-02T02:07:41.588Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="抢占式任务配置">
+<meta name="twitter:description" content="背景 以前做项目使用Raspberry PI CM3 + RT Preempt做实时控制，这部分需要对系统和任务进行特殊的配置。">
+<meta name="twitter:image" content="http://jifachn.github.io/images/raspberry.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/icon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/icon.ico" alt="抢占式任务配置" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item" href="/">Home</a>
+                
+                <a class="navbar-item" href="/archives">Archives</a>
+                
+                <a class="navbar-item" href="/categories">Categories</a>
+                
+                <a class="navbar-item" href="/tags">Tags</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/images/raspberry.jpg" alt="抢占式任务配置">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/RaspberryPI/">RaspberryPI</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 442 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                抢占式任务配置
+            
+        </h1>
+        <div class="content">
+            <hr>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><hr>
+<p>以前做项目使用Raspberry PI CM3 + RT Preempt做实时控制，这部分需要对系统和任务进行特殊的配置。</p>
+<a id="more"></a>
+
+<h2 id="系统补丁"><a href="#系统补丁" class="headerlink" title="系统补丁"></a>系统补丁</h2><hr>
+<p>需要先将原内核替换为抢占式内核，这个在树莓派官方github内就有相应的rt版本内核，找步骤替换即可。</p>
+<h2 id="CPU隔离"><a href="#CPU隔离" class="headerlink" title="CPU隔离"></a>CPU隔离</h2><hr>
+<p>CPU隔离就是将树莓派的四个CPU的其中一个从Linux系统的调度名单中划去，以便为我们实时任务服务。</p>
+<p>修改/boot/cmdline.txt</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nano /boot/cmdline.txt</span><br><span class="line"></span><br><span class="line">添加</span><br><span class="line">isolcpus=3</span><br></pre></td></tr></table></figure>
+
+
+<p>验证：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apt install systbench</span><br><span class="line">sysbench --test=cpu --cpu-max-prime=20000 --num-threads=4 run</span><br><span class="line"></span><br><span class="line">top</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Tasks: 126 total,   2 running,  83 sleeping,   0 stopped,   0 zombie</span><br><span class="line">%Cpu0  : 87.8 us, 12.2 sy,  0.0 ni,  0.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">%Cpu1  :100.0 us,  0.0 sy,  0.0 ni,  0.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">%Cpu2  : 85.4 us, 14.6 sy,  0.0 ni,  0.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">%Cpu3  :  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">KiB Mem :   896152 total,   711340 free,    31848 used,   152964 buff/cache</span><br><span class="line">KiB Swap:   102396 total,   102396 free,        0 used.   804976 avail Mem </span><br><span class="line"></span><br><span class="line">  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND                                                                                                                                      </span><br><span class="line">  817 root      20   0    8628   1636   1364 S 260.5  0.2   3:16.75 sysbench                                                                                                                                     </span><br><span class="line">  486 root     -51   0       0      0      0 S   7.0  0.0   0:19.05 irq/170-mcp251x                                                                                                                              </span><br><span class="line">  823 root      20   0    8204   3384   2852 R   7.0  0.4   0:00.11 top                                                                                                                                          </span><br><span class="line">   81 root      20   0       0      0      0 I   4.7  0.0   0:04.10 kworker/0:2                                                                                                                                  </span><br><span class="line">   28 root      -2   0       0      0      0 S   2.3  0.0   0:00.30 ktimersoftd/2                                                                                                                                </span><br><span class="line">   86 root      20   0       0      0      0 S   2.3  0.0   0:03.22 spi0                                                                                                                                         </span><br><span class="line">   87 root     -51   0       0      0      0 S   2.3  0.0   0:00.23 irq/169-enc28j6                                                                                                                              </span><br><span class="line">  456 root      20   0       0      0      0 I   2.3  0.0   0:00.76 kworker/2:3                                                                                                                                  </span><br><span class="line">  781 root      20   0   11652   5816   5096 S   2.3  0.6   0:00.44 sshd                           </span><br></pre></td></tr></table></figure>
+
+<p>在4线程CPU benchmark测试下，CPU3未被调度。</p>
+<h2 id="用户隔离"><a href="#用户隔离" class="headerlink" title="用户隔离"></a>用户隔离</h2><hr>
+<p>为实时进程添加新用户，并禁用登录：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adduser rttask</span><br><span class="line">passwd -l rttask</span><br></pre></td></tr></table></figure>
+
+<h2 id="SYSTEMD配置"><a href="#SYSTEMD配置" class="headerlink" title="SYSTEMD配置"></a>SYSTEMD配置</h2><hr>
+<p>几个注意点：</p>
+<ol>
+<li>User=rttask 设置用户隔离</li>
+<li>Nice=-20 设置用户态最高优先级</li>
+<li>CPUAffinity=3 设置CPU亲和性</li>
+<li>资源限制</li>
+</ol>
+<p>文件位置：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/lib/systemd/system/rttask.service</span><br></pre></td></tr></table></figure>
+
+<p>内容：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=real time task</span><br><span class="line">After=network.service redis.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">User=rttask</span><br><span class="line">WorkingDirectory=/root/debug/web</span><br><span class="line">ExecStart=/root/debug/web/rttask</span><br><span class="line">Restart=always</span><br><span class="line">StartLimitInterval=0</span><br><span class="line">Nice=-20</span><br><span class="line">CPUAffinity=3</span><br><span class="line">MemoryMax=100M</span><br><span class="line">CPUQuota=200%</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=default.target</span><br></pre></td></tr></table></figure>
+
+
+<p>启动、自启动命令：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line"></span><br><span class="line">systemctl start rttask</span><br><span class="line">systemctl enable rttask</span><br></pre></td></tr></table></figure>
+
+<p>其它命令：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop rttask</span><br><span class="line">systemctl disable rttask</span><br><span class="line">systemctl restart rttask</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/RaspberryPI/">RaspberryPI</a>, <a class="has-link-grey -link" href="/tags/嵌入式/">嵌入式</a>, <a class="has-link-grey -link" href="/tags/技术/">技术</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+<div class="addthis_inline_share_toolbox"></div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d316e9c1160c7d1"></script>
+
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>Alipay</span>
+    <div class="qrcode"><img src="/images/alipay.jpg" alt="Alipay"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>Wechat</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="Wechat"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/09/02/Vue.js学习-命令记录/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Vue.js学习-命令记录</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/20/Raspberry PI长期运行配置/">
+                <span class="level-item">Raspberry PI长期运行配置</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comentarios</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://jifachn.github.io/2019/07/21/抢占式任务配置/';
+        this.page.identifier = '2019/07/21/抢占式任务配置/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'jifanchn' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/avatar.png" alt="十几秒的光照">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        十几秒的光照
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        幻想游民
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>地球 中国 上海</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Entradas
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        7
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categorias
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        6
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Etiquetas
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        8
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/jifanchn" target="_blank">
+                SEGUIR</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" title="Github" href="https://github.com/jifanchn">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://blog.zhangruipeng.me/hexo-theme-icarus/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Icarus</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">blog.zhangruipeng.me</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/jifanchn" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">My Github</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categorias
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/RaspberryPI/">
+            <span class="level-start">
+                <span class="level-item">RaspberryPI</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/STM32/">
+            <span class="level-start">
+                <span class="level-item">STM32</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/STM32/HAL库/">
+            <span class="level-start">
+                <span class="level-item">HAL库</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/前端/">
+            <span class="level-start">
+                <span class="level-item">前端</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/物联网/">
+            <span class="level-start">
+                <span class="level-item">物联网</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/物联网/嵌入式上云/">
+            <span class="level-start">
+                <span class="level-item">嵌入式上云</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Nube de etiquetas
+        </h3>
+        <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/RaspberryPI/" style="font-size: 13.33px;">RaspberryPI</a> <a href="/tags/STM32/" style="font-size: 16.67px;">STM32</a> <a href="/tags/Vue-js/" style="font-size: 10px;">Vue.js</a> <a href="/tags/前端/" style="font-size: 13.33px;">前端</a> <a href="/tags/嵌入式/" style="font-size: 20px;">嵌入式</a> <a href="/tags/技术/" style="font-size: 20px;">技术</a> <a href="/tags/物联网/" style="font-size: 10px;">物联网</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recientes
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/02/Hexo常用命令/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/frontend.jpg" alt="Hexo常用命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-01T16:00:00.000Z">2019-09-02</time></div>
+                    <a href="/2019/09/02/Hexo常用命令/" class="has-link-black-ter is-size-6">Hexo常用命令</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/02/Vue.js学习-命令记录/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/frontend.jpg" alt="Vue.js学习-命令记录">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-01T16:00:00.000Z">2019-09-02</time></div>
+                    <a href="/2019/09/02/Vue.js学习-命令记录/" class="has-link-black-ter is-size-6">Vue.js学习-命令记录</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/21/抢占式任务配置/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/raspberry.jpg" alt="抢占式任务配置">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
+                    <a href="/2019/07/21/抢占式任务配置/" class="has-link-black-ter is-size-6">抢占式任务配置</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/RaspberryPI/">RaspberryPI</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/20/Raspberry PI长期运行配置/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/raspberry.jpg" alt="Raspberry PI长期运行配置">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T16:00:00.000Z">2019-07-20</time></div>
+                    <a href="/2019/07/20/Raspberry PI长期运行配置/" class="has-link-black-ter is-size-6">Raspberry PI长期运行配置</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/RaspberryPI/">RaspberryPI</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/19/STM32 HAL库I2C注意点/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/stm32.jpg" alt="STM32 HAL库I2C注意点">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-18T16:00:00.000Z">2019-07-19</time></div>
+                    <a href="/2019/07/19/STM32 HAL库I2C注意点/" class="has-link-black-ter is-size-6">STM32 HAL库I2C注意点</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/STM32/">STM32</a> / <a class="has-link-grey -link" href="/categories/STM32/HAL库/">HAL库</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archivos
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Etiquetas
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Blog/">
+                        <span class="tag">Blog</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RaspberryPI/">
+                        <span class="tag">RaspberryPI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/STM32/">
+                        <span class="tag">STM32</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Vue-js/">
+                        <span class="tag">Vue.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/前端/">
+                        <span class="tag">前端</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/嵌入式/">
+                        <span class="tag">嵌入式</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/技术/">
+                        <span class="tag">技术</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/物联网/">
+                        <span class="tag">物联网</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recientes
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/02/Hexo常用命令/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/frontend.jpg" alt="Hexo常用命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-01T16:00:00.000Z">2019-09-02</time></div>
+                    <a href="/2019/09/02/Hexo常用命令/" class="has-link-black-ter is-size-6">Hexo常用命令</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/02/Vue.js学习-命令记录/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/frontend.jpg" alt="Vue.js学习-命令记录">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-01T16:00:00.000Z">2019-09-02</time></div>
+                    <a href="/2019/09/02/Vue.js学习-命令记录/" class="has-link-black-ter is-size-6">Vue.js学习-命令记录</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/21/抢占式任务配置/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/raspberry.jpg" alt="抢占式任务配置">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
+                    <a href="/2019/07/21/抢占式任务配置/" class="has-link-black-ter is-size-6">抢占式任务配置</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/RaspberryPI/">RaspberryPI</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/20/Raspberry PI长期运行配置/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/raspberry.jpg" alt="Raspberry PI长期运行配置">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-19T16:00:00.000Z">2019-07-20</time></div>
+                    <a href="/2019/07/20/Raspberry PI长期运行配置/" class="has-link-black-ter is-size-6">Raspberry PI长期运行配置</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/RaspberryPI/">RaspberryPI</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/19/STM32 HAL库I2C注意点/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/stm32.jpg" alt="STM32 HAL库I2C注意点">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-18T16:00:00.000Z">2019-07-19</time></div>
+                    <a href="/2019/07/19/STM32 HAL库I2C注意点/" class="has-link-black-ter is-size-6">STM32 HAL库I2C注意点</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/STM32/">STM32</a> / <a class="has-link-grey -link" href="/categories/STM32/HAL库/">HAL库</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archivos
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Etiquetas
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Blog/">
+                        <span class="tag">Blog</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RaspberryPI/">
+                        <span class="tag">RaspberryPI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/STM32/">
+                        <span class="tag">STM32</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Vue-js/">
+                        <span class="tag">Vue.js</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/前端/">
+                        <span class="tag">前端</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/嵌入式/">
+                        <span class="tag">嵌入式</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/技术/">
+                        <span class="tag">技术</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/物联网/">
+                        <span class="tag">物联网</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/icon.ico" alt="抢占式任务配置" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 吉凡&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Entradas',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categorias',
+                TAGS: 'Etiquetas',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

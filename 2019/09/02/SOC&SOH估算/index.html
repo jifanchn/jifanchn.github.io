@@ -2,23 +2,25 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>Category: 嵌入式上云 - 十几秒的光照</title>
+<title>SOC SOH估计 - 十几秒的光照</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="记录个人生活，记录技术进阶">
-<meta property="og:type" content="website">
-<meta property="og:title" content="十几秒的光照">
-<meta property="og:url" content="http://jifachn.github.io/categories/物联网/嵌入式上云/index.html">
+    <meta name="description" content="问题 电池管理系统常用在各个场合，如手机、电脑、功率电力电子设备。SOC(State of charge)与SOH(State of health)估计是需要实现的两个重要算法。">
+<meta name="keywords" content="电力电子,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SOC SOH估计">
+<meta property="og:url" content="http://jifachn.github.io/2019/09/02/SOC&SOH估算/index.html">
 <meta property="og:site_name" content="十几秒的光照">
-<meta property="og:description" content="记录个人生活，记录技术进阶">
+<meta property="og:description" content="问题 电池管理系统常用在各个场合，如手机、电脑、功率电力电子设备。SOC(State of charge)与SOH(State of health)估计是需要实现的两个重要算法。">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://jifachn.github.io/images/og_image.png">
+<meta property="og:image" content="http://jifachn.github.io/images/battery.jpg">
+<meta property="og:updated_time" content="2019-09-02T07:39:17.094Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="十几秒的光照">
-<meta name="twitter:description" content="记录个人生活，记录技术进阶">
-<meta name="twitter:image" content="http://jifachn.github.io/images/og_image.png">
+<meta name="twitter:title" content="SOC SOH估计">
+<meta name="twitter:description" content="问题 电池管理系统常用在各个场合，如手机、电脑、功率电力电子设备。SOC(State of charge)与SOH(State of health)估计是需要实现的两个重要算法。">
+<meta name="twitter:image" content="http://jifachn.github.io/images/battery.jpg">
 
 
 
@@ -92,7 +94,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/icon.ico" alt="十几秒的光照" height="28">
+                <img src="/images/icon.ico" alt="SOC SOH估计" height="28">
             
             </a>
         </div>
@@ -136,42 +138,28 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/categories">Categories</a></li>
-            
-            <li><a href="/categories/物联网/">物联网</a></li>
-            
-            <li class="is-active"><a href="#" aria-current="page">嵌入式上云</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-image">
-        <a href="/2019/07/19/阿里云iotkit-embedded的坑/" class="image is-7by1">
-            <img class="thumbnail" src="/images/sim800c.jpg" alt="阿里云iotkit-embedded的坑">
-        </a>
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/images/battery.jpg" alt="SOC SOH估计">
+        </span>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-18T16:00:00.000Z">2019-07-19</time>
+                <time class="level-item has-text-grey" datetime="2019-09-01T16:00:00.000Z">2019-09-02</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/物联网/">物联网</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/物联网/嵌入式上云/">嵌入式上云</a>
+                <a class="has-link-grey -link" href="/categories/电力电子/">电力电子</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 784 words)
+                    6 minutes read (About 897 words)
                 </span>
                 
                 
@@ -180,44 +168,139 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/07/19/阿里云iotkit-embedded的坑/">阿里云iotkit-embedded的坑</a>
+                SOC SOH估计
             
         </h1>
         <div class="content">
             <hr>
-<h2 id="硬件配置"><a href="#硬件配置" class="headerlink" title="硬件配置"></a>硬件配置</h2><blockquote>
-<p>STM32F103RCT6 (RAM 64kB, FLASH: 256kB)<br>SIM800C</p>
-</blockquote>
-<h2 id="软件配置"><a href="#软件配置" class="headerlink" title="软件配置"></a>软件配置</h2><hr>
-<blockquote>
-<p>STM32CubeMX 配置 FreeRTOS<br><a href="https://github.com/aliyun/iotkit-embedded" target="_blank" rel="noopener">iotkit-embedded</a><br><a href="https://help.aliyun.com/document_detail/111167.html" target="_blank" rel="noopener">阿里云移植demo</a></p>
-</blockquote>
-<h2 id="iotkit-embedded配置"><a href="#iotkit-embedded配置" class="headerlink" title="iotkit-embedded配置"></a>iotkit-embedded配置</h2><hr>
-<p>参考阿里云给出的demo，使用</p>
-<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make menuconfig</span><br></pre></td></tr></table></figure>
-<p>配置</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><hr>
+<p>电池管理系统常用在各个场合，如手机、电脑、功率电力电子设备。<br>SOC(State of charge)与SOH(State of health)估计是需要实现的两个重要算法。</p>
+<a id="more"></a>
+
+<h2 id="芯片方案"><a href="#芯片方案" class="headerlink" title="芯片方案"></a>芯片方案</h2><hr>
+<p>BQ34Z100-G1:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.ti.com.cn/product/cn/BQ34Z100-G1</span><br></pre></td></tr></table></figure>
+
+<p>还有其它方案，原理类似。<br>采用高精度的ADC做电荷计，对电池内电荷进行准确计数（安时积分）；<br>同时输入电池的测试曲线，用以作为基准，采用逻辑进行校正，具体见bq34z100-g1的算法文档。<br>只需要会使用芯片就可以了，门槛低，也是最常用应用最多的方案。<br>因为没有动态特性的跟踪，误差较大，可能达20%。[1]</p>
+<h2 id="扩展卡尔曼滤波"><a href="#扩展卡尔曼滤波" class="headerlink" title="扩展卡尔曼滤波"></a>扩展卡尔曼滤波</h2><hr>
+<p>扩展卡尔曼滤波是对非线性系统进行在线参数估计的一种算法，它用在BMS系统中十分适用，据多篇文献，可达到较高精度1%之内[1]。</p>
+<p>这有两种方法：</p>
+<p>方法一是对系统所有的参数都进行建模（建模参考[2]），然后直接把所有参数进行在线扩展卡尔曼滤波[1]，获取准确的系统参数。这种方法据称准确度较高，我不负责任地评估一下，它的稳定性可能较差，为了获取所有的参数，系统需要经历比较全面的动态过程，这在实际工作状态下是很难实现的；同时在MCU内的计算需求大。</p>
+<p>方法二是对系统的动态参数提前进行建模以及测试，然后在线仅实现卡尔曼滤波对电池内阻在线跟踪。建模仍然参考[2]。</p>
+<p>先对一阶的系统进行建模，对电池动态特性中的每个参数都作为被估计的参数，进行建模，然后进行最小二乘拟合，获取不同情况下的电池参数。</p>
+<p>为了实现较高的跟踪精度，仍需要对电池在不同温度、不同SOC情况下的动态特性进行建模，具体说来就是将把电池在不同SOC（0%到100%，step 10%）下进行脉冲放电，并计算它的动态参数，获取离线参数表。</p>
+<p>然后在线实现内阻跟踪。</p>
+<p>估计可以达到很高的精度以及很高的稳定性及较小的计算需求。</p>
+<h2 id="其它设计参考"><a href="#其它设计参考" class="headerlink" title="其它设计参考"></a>其它设计参考</h2><hr>
+<p>Hack Tesla BMS：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://hackaday.io/project/10098-model-s-bms-hacking</span><br></pre></td></tr></table></figure>
+
+<p>Matlab：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://ww2.mathworks.cn/solutions/power-electronics-control/battery-models.html</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><hr>
+<p>[1] Andre, Dave, et al. “Advanced mathematical methods of SOC and SOH estimation for lithium-ion batteries.” Journal of power sources 224 (2013): 20-27.<br>[2] He, Hongwen, Rui Xiong, and Hongqiang Guo. “Online estimation of model parameters and state-of-charge of LiFePO4 batteries in electric vehicles.” Applied Energy 89.1 (2012): 413-420.<br>[3] Cheng, Ka Wai Eric, et al. “Battery-management system (BMS) and SOC development for electrical vehicles.” IEEE transactions on vehicular technology 60.1 (2010): 76-88.<br>[4] Plett, Gregory L. “Extended Kalman filtering for battery management systems of LiPB-based HEV battery packs: Part 3. State and parameter estimation.” Journal of Power sources 134.2 (2004): 277-292.<br>[5] Yu, Zhihao, Ruituo Huai, and Linjing Xiao. “State-of-charge estimation for lithium-ion batteries using a kalman filter based on local linearization.” Energies 8.8 (2015): 7854-7873.<br>[6] Huang, Shyh-Chin, et al. “An online SOC and SOH estimation model for lithium-ion batteries.” Energies 10.4 (2017): 512.<br>[7] Zhang, Ruifeng, et al. “State of the art of lithium-ion battery soc estimation for electrical vehicles.” Energies 11.7 (2018): 1820.<br>[8] Hoshiya, Masaru, and Etsuro Saito. “Structural identification by extended Kalman filter.” Journal of engineering mechanics 110.12 (1984): 1757-1770.<br>[9] Ljung, Lennart. “Asymptotic behavior of the extended Kalman filter as a parameter estimator for linear systems.” IEEE Transactions on Automatic Control 24.1 (1979): 36-50.<br>[10] Welch, Greg, and Gary Bishop. “An introduction to the Kalman filter.” (1995): 41-95.</p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/07/19/阿里云iotkit-embedded的坑/#more">Read More</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/电力电子/">电力电子</a>, <a class="has-link-grey -link" href="/tags/算法/">算法</a>
                 </div>
             </div>
         </div>
         
+        
+        
+        
+<div class="addthis_inline_share_toolbox"></div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d316e9c1160c7d1"></script>
+
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>Alipay</span>
+    <div class="qrcode"><img src="/images/alipay.jpg" alt="Alipay"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>Wechat</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="Wechat"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/09/02/Hexo常用命令/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Hexo常用命令</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/09/02/Vue.js学习-命令记录/">
+                <span class="level-item">Vue.js学习-命令记录</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://jifachn.github.io/2019/09/02/SOC&amp;SOH估算/';
+        this.page.identifier = '2019/09/02/SOC&amp;SOH估算/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'jifanchn' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 
@@ -912,7 +995,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/icon.ico" alt="十几秒的光照" height="28">
+                    <img src="/images/icon.ico" alt="SOC SOH估计" height="28">
                 
                 </a>
                 <p class="is-size-7">

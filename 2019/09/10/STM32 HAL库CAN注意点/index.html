@@ -16,7 +16,7 @@
 <meta property="og:description" content="现象 CAN滤波器不正常工作；F4的双路CAN不正常工作。">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="http://jifachn.github.io/images/stm32.jpg">
-<meta property="og:updated_time" content="2019-09-10T10:26:48.951Z">
+<meta property="og:updated_time" content="2019-09-23T06:54:15.820Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="STM32 HAL库CAN注意点">
 <meta name="twitter:description" content="现象 CAN滤波器不正常工作；F4的双路CAN不正常工作。">
@@ -159,7 +159,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 442 words)
+                    3 minutes read (About 482 words)
                 </span>
                 
                 
@@ -202,6 +202,7 @@
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(Time Quanta in Bit Segment 1) + (Time Quanta in Bit Segment 2) + 1 = 9 bit</span><br><span class="line">9Bit * Time Quantum = 9 * 444.444ns = 4000ns</span><br><span class="line">1/4000ns = 250kHz</span><br></pre></td></tr></table></figure>
 
 <p>CAN通信的波特率必须完全匹配，硬线上可能会出现负电压。</p>
+<p>2019.9.23:<br>STM32CubeMX中有一项配置，自动重传：配置的期望和代码生成的结果正好是相反的，一定要注意。</p>
 
         </div>
         
@@ -260,10 +261,17 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/09/10/STM32 HAL库ADC注意点/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">STM32 HAL库ADC注意点</span>
+            </a>
+        </div>
+        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/09/10/STM32 HAL库ADC注意点/">
-                <span class="level-item">STM32 HAL库ADC注意点</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/09/02/SOC&SOH估算/">
+                <span class="level-item">SOC SOH估计</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -525,25 +533,6 @@
         
         <article class="media">
             
-            <a href="/2019/09/10/STM32 HAL库CAN注意点/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/stm32.jpg" alt="STM32 HAL库CAN注意点">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-09T16:00:00.000Z">2019-09-10</time></div>
-                    <a href="/2019/09/10/STM32 HAL库CAN注意点/" class="has-link-black-ter is-size-6">STM32 HAL库CAN注意点</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STM32/">STM32</a> / <a class="has-link-grey -link" href="/categories/STM32/HAL库/">HAL库</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2019/09/10/STM32 HAL库ADC注意点/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/stm32.jpg" alt="STM32 HAL库ADC注意点">
@@ -563,18 +552,18 @@
         
         <article class="media">
             
-            <a href="/2019/09/02/Hexo常用命令/" class="media-left">
+            <a href="/2019/09/10/STM32 HAL库CAN注意点/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/frontend.jpg" alt="Hexo常用命令">
+                    <img class="thumbnail" src="/images/stm32.jpg" alt="STM32 HAL库CAN注意点">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-01T16:00:00.000Z">2019-09-02</time></div>
-                    <a href="/2019/09/02/Hexo常用命令/" class="has-link-black-ter is-size-6">Hexo常用命令</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-09T16:00:00.000Z">2019-09-10</time></div>
+                    <a href="/2019/09/10/STM32 HAL库CAN注意点/" class="has-link-black-ter is-size-6">STM32 HAL库CAN注意点</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/前端/">前端</a>
+                        <a class="has-link-grey -link" href="/categories/STM32/">STM32</a> / <a class="has-link-grey -link" href="/categories/STM32/HAL库/">HAL库</a>
                     </p>
                 </div>
             </div>
@@ -594,6 +583,25 @@
                     <a href="/2019/09/02/SOC&SOH估算/" class="has-link-black-ter is-size-6">SOC SOH估计</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/电力电子/">电力电子</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/02/Hexo常用命令/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/frontend.jpg" alt="Hexo常用命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-01T16:00:00.000Z">2019-09-02</time></div>
+                    <a href="/2019/09/02/Hexo常用命令/" class="has-link-black-ter is-size-6">Hexo常用命令</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a>
                     </p>
                 </div>
             </div>
@@ -760,25 +768,6 @@
         
         <article class="media">
             
-            <a href="/2019/09/10/STM32 HAL库CAN注意点/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/stm32.jpg" alt="STM32 HAL库CAN注意点">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-09T16:00:00.000Z">2019-09-10</time></div>
-                    <a href="/2019/09/10/STM32 HAL库CAN注意点/" class="has-link-black-ter is-size-6">STM32 HAL库CAN注意点</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/STM32/">STM32</a> / <a class="has-link-grey -link" href="/categories/STM32/HAL库/">HAL库</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2019/09/10/STM32 HAL库ADC注意点/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/stm32.jpg" alt="STM32 HAL库ADC注意点">
@@ -798,18 +787,18 @@
         
         <article class="media">
             
-            <a href="/2019/09/02/Hexo常用命令/" class="media-left">
+            <a href="/2019/09/10/STM32 HAL库CAN注意点/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/frontend.jpg" alt="Hexo常用命令">
+                    <img class="thumbnail" src="/images/stm32.jpg" alt="STM32 HAL库CAN注意点">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-01T16:00:00.000Z">2019-09-02</time></div>
-                    <a href="/2019/09/02/Hexo常用命令/" class="has-link-black-ter is-size-6">Hexo常用命令</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-09T16:00:00.000Z">2019-09-10</time></div>
+                    <a href="/2019/09/10/STM32 HAL库CAN注意点/" class="has-link-black-ter is-size-6">STM32 HAL库CAN注意点</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/前端/">前端</a>
+                        <a class="has-link-grey -link" href="/categories/STM32/">STM32</a> / <a class="has-link-grey -link" href="/categories/STM32/HAL库/">HAL库</a>
                     </p>
                 </div>
             </div>
@@ -829,6 +818,25 @@
                     <a href="/2019/09/02/SOC&SOH估算/" class="has-link-black-ter is-size-6">SOC SOH估计</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/电力电子/">电力电子</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/02/Hexo常用命令/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/frontend.jpg" alt="Hexo常用命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-01T16:00:00.000Z">2019-09-02</time></div>
+                    <a href="/2019/09/02/Hexo常用命令/" class="has-link-black-ter is-size-6">Hexo常用命令</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/前端/">前端</a>
                     </p>
                 </div>
             </div>

@@ -123,7 +123,7 @@
                 
                 
                 
-                <a class="navbar-item search" title="Search" href="javascript:;">
+                <a class="navbar-item search" title="Pencarian" href="javascript:;">
                     <i class="fas fa-search"></i>
                 </a>
                 
@@ -136,6 +136,73 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/04/02/OpenOCD在虚拟机中使用/" class="image is-7by1">
+            <img class="thumbnail" src="/images/stm32debug.jpg" alt="OpenOCD在虚拟机中的使用">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-04-01T16:00:00.000Z">2020-04-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/软件配置/">软件配置</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes membaca (Sekitar 403 kata)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/04/02/OpenOCD在虚拟机中使用/">OpenOCD在虚拟机中的使用</a>
+            
+        </h1>
+        <div class="content">
+            <hr>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><hr>
+<p>在Vmware的ESXI虚拟机中使用OpenOCD的时候，一直提示找不到STM32的仿真器。</p>
+<p>在系统硬件中可以看到连接的USB设备。</p>
+<p>OpenOCD已经是<a href="!https://gnutoolchains.com/arm-eabi/openocd/">最新版本20200310</a>。</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><hr>
+<p>经过查找后，确定原因是OpenOCD使用的libusb不能透过非libusb驱动的hub（恰好这是vmware实现USB映射的方法）找到此hub之下的libusb设备。</p>
+<p>补充一个<a href="!https://sourceforge.net/p/libusb/mailman/message/29994078/">链接</a>。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><hr>
+<p>经测试，最新版本的libusb已经支持了在hub下的设备遍历。测试方法就是下载最新版本的<a href="!https://github.com/libusb/libusb">libusb</a>并执行遍历的测试，可以看到设备。显然旧版本的看不到。</p>
+<p>确定办法就是重新编译最新版本的OpenOCD，并且替换为最新版本的libusb。（注意要先用cygwin安装libusb，然后替换libusb）</p>
+<p>编译步骤（<a href="!https://mindchasers.com/dev/openocd-darsena-windows">参考此处</a>）：</p>
+<p>但是注意到编译过程中可能出现一些错误，原因是windows下这个cygwin编译器和makefile不匹配，在Makefile里找到-Wxxxx关闭就可以了。</p>
+<p>当然由于目录设置的问题，OpenOCD要放在C盘根目录下，还要调整编译选项：C:\OpenOCD。</p>
+<p>说了这么多，太麻烦了。</p>
+<pre><code>链接：https://pan.baidu.com/s/11m8PbTbFTZYaSNV9kcsD6g 
+提取码：na3f 
+复制这段内容后打开百度网盘手机App，操作更方便哦</code></pre>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
     <div class="card">
     
     <div class="card-image">
@@ -158,7 +225,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 335 words)
+                    2 minutes membaca (Sekitar 335 kata)
                 </span>
                 
                 
@@ -182,7 +249,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/01/在社区版Seafile中使用AD认证/#more">Read More</a>
+                <a class="button is-size-7 is-light" href="/2020/02/01/在社区版Seafile中使用AD认证/#more">Selengkapnya</a>
                 </div>
             </div>
         </div>
@@ -220,7 +287,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    a few seconds read (About 58 words)
+                    a few seconds membaca (Sekitar 58 kata)
                 </span>
                 
                 
@@ -278,7 +345,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 695 words)
+                    5 minutes membaca (Sekitar 695 kata)
                 </span>
                 
                 
@@ -301,68 +368,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/10/09/控制系统的限制条件/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/10/09/流水线劳动需要的智力/" class="image is-7by1">
-            <img class="thumbnail" src="/images/think.jpg" alt="流水线劳动需要的智力思考">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-10-08T16:00:00.000Z">2019-10-09</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/胡想思想/">胡想思想</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    5 minutes read (About 695 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/10/09/流水线劳动需要的智力/">流水线劳动需要的智力思考</a>
-            
-        </h1>
-        <div class="content">
-            <hr>
-<h2 id="为什么我要XJB想这个问题？"><a href="#为什么我要XJB想这个问题？" class="headerlink" title="为什么我要XJB想这个问题？"></a>为什么我要XJB想这个问题？</h2><hr>
-<p>人类从原始社会采集野果，追捕猎物到农耕时代、驯化野兽，到现代的机械化大生产，一步步摆脱了繁杂的劳动。</p>
-<p>到今天，人们的一大梦想就是就是解放类似流水线人工、扫地等等低智力劳动的工作；同时，在这个过程中，由于生产效率的提升，会创造巨大的价值，产生巨大的财富。无论从精神或者物质方面，进一步解放生产力都是人们梦寐以求的进步。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/10/09/流水线劳动需要的智力/#more">Read More</a>
+                <a class="button is-size-7 is-light" href="/2019/10/09/控制系统的限制条件/#more">Selengkapnya</a>
                 </div>
             </div>
         </div>
@@ -400,7 +406,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 255 words)
+                    2 minutes membaca (Sekitar 255 kata)
                 </span>
                 
                 
@@ -422,7 +428,68 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/10/09/人类控制和自动控制系统的区别/#more">Read More</a>
+                <a class="button is-size-7 is-light" href="/2019/10/09/人类控制和自动控制系统的区别/#more">Selengkapnya</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/2019/10/09/流水线劳动需要的智力/" class="image is-7by1">
+            <img class="thumbnail" src="/images/think.jpg" alt="流水线劳动需要的智力思考">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-10-08T16:00:00.000Z">2019-10-09</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/胡想思想/">胡想思想</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 minutes membaca (Sekitar 695 kata)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/10/09/流水线劳动需要的智力/">流水线劳动需要的智力思考</a>
+            
+        </h1>
+        <div class="content">
+            <hr>
+<h2 id="为什么我要XJB想这个问题？"><a href="#为什么我要XJB想这个问题？" class="headerlink" title="为什么我要XJB想这个问题？"></a>为什么我要XJB想这个问题？</h2><hr>
+<p>人类从原始社会采集野果，追捕猎物到农耕时代、驯化野兽，到现代的机械化大生产，一步步摆脱了繁杂的劳动。</p>
+<p>到今天，人们的一大梦想就是就是解放类似流水线人工、扫地等等低智力劳动的工作；同时，在这个过程中，由于生产效率的提升，会创造巨大的价值，产生巨大的财富。无论从精神或者物质方面，进一步解放生产力都是人们梦寐以求的进步。</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/10/09/流水线劳动需要的智力/#more">Selengkapnya</a>
                 </div>
             </div>
         </div>
@@ -460,7 +527,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 482 words)
+                    3 minutes membaca (Sekitar 482 kata)
                 </span>
                 
                 
@@ -482,7 +549,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/09/10/STM32 HAL库CAN注意点/#more">Read More</a>
+                <a class="button is-size-7 is-light" href="/2019/09/10/STM32 HAL库CAN注意点/#more">Selengkapnya</a>
                 </div>
             </div>
         </div>
@@ -520,7 +587,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 265 words)
+                    2 minutes membaca (Sekitar 265 kata)
                 </span>
                 
                 
@@ -542,127 +609,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/09/10/STM32 HAL库ADC注意点/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/09/02/Hexo常用命令/" class="image is-7by1">
-            <img class="thumbnail" src="/images/frontend.jpg" alt="Hexo常用命令">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-01T16:00:00.000Z">2019-09-02</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/前端/">前端</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a few seconds read (About 74 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/02/Hexo常用命令/">Hexo常用命令</a>
-            
-        </h1>
-        <div class="content">
-            <hr>
-<h2 id="Hexo介绍"><a href="#Hexo介绍" class="headerlink" title="Hexo介绍"></a>Hexo介绍</h2><hr>
-<p>Hexo是本博客使用的前端系统，文章记录常用命令，待将来查询使用。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/09/02/Hexo常用命令/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/09/02/SOC&SOH估算/" class="image is-7by1">
-            <img class="thumbnail" src="/images/battery.jpg" alt="SOC SOH估计">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-01T16:00:00.000Z">2019-09-02</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/电力电子/">电力电子</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 minutes read (About 897 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/02/SOC&SOH估算/">SOC SOH估计</a>
-            
-        </h1>
-        <div class="content">
-            <hr>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><hr>
-<p>电池管理系统常用在各个场合，如手机、电脑、功率电力电子设备。<br>SOC(State of charge)与SOH(State of health)估计是需要实现的两个重要算法。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/09/02/SOC&SOH估算/#more">Read More</a>
+                <a class="button is-size-7 is-light" href="/2019/09/10/STM32 HAL库ADC注意点/#more">Selengkapnya</a>
                 </div>
             </div>
         </div>
@@ -700,7 +647,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 126 words)
+                    a minute membaca (Sekitar 126 kata)
                 </span>
                 
                 
@@ -722,7 +669,67 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/09/02/Vue.js学习-命令记录/#more">Read More</a>
+                <a class="button is-size-7 is-light" href="/2019/09/02/Vue.js学习-命令记录/#more">Selengkapnya</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/2019/09/02/SOC&SOH估算/" class="image is-7by1">
+            <img class="thumbnail" src="/images/battery.jpg" alt="SOC SOH估计">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-01T16:00:00.000Z">2019-09-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/电力电子/">电力电子</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 minutes membaca (Sekitar 897 kata)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/02/SOC&SOH估算/">SOC SOH估计</a>
+            
+        </h1>
+        <div class="content">
+            <hr>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><hr>
+<p>电池管理系统常用在各个场合，如手机、电脑、功率电力电子设备。<br>SOC(State of charge)与SOH(State of health)估计是需要实现的两个重要算法。</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/09/02/SOC&SOH估算/#more">Selengkapnya</a>
                 </div>
             </div>
         </div>
@@ -743,10 +750,10 @@
 <div class="card card-transparent">
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
         <div class="pagination-previous is-invisible is-hidden-mobile">
-            <a class="is-flex-grow has-text-black-ter" href="/page/0/">Anterior</a>
+            <a class="is-flex-grow has-text-black-ter" href="/page/0/">Sebelumnya</a>
         </div>
         <div class="pagination-next">
-            <a class="is-flex-grow has-text-black-ter" href="/page/2/">Siguiente</a>
+            <a class="is-flex-grow has-text-black-ter" href="/page/2/">Berikutnya</a>
         </div>
         <ul class="pagination-list is-hidden-mobile">
             
@@ -797,17 +804,17 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Entradas
+                        Artikel
                     </p>
                     <p class="title has-text-weight-normal">
-                        15
+                        16
                     </p>
                 </div>
             </div>
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categorias
+                        Kategori
                     </p>
                     <p class="title has-text-weight-normal">
                         9
@@ -817,7 +824,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Etiquetas
+                        Tag
                     </p>
                     <p class="title has-text-weight-normal">
                         13
@@ -827,7 +834,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/jifanchn" target="_blank">
-                SEGUIR</a>
+                IKUTI</a>
         </div>
         
         
@@ -852,7 +859,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Links
+            Tautan
         </h3>
         <ul class="menu-list">
         
@@ -901,7 +908,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Categorias
+                Kategori
             </h3>
             <ul class="menu-list">
             <li>
@@ -974,7 +981,7 @@
                 <span class="level-item">软件配置</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li>
             </ul>
@@ -986,9 +993,9 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Nube de etiquetas
+            Awan tag
         </h3>
-        <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/RaspberryPI/" style="font-size: 12.5px;">RaspberryPI</a> <a href="/tags/STM32/" style="font-size: 17.5px;">STM32</a> <a href="/tags/Vue-js/" style="font-size: 10px;">Vue.js</a> <a href="/tags/做一个民科/" style="font-size: 15px;">做一个民科</a> <a href="/tags/前端/" style="font-size: 12.5px;">前端</a> <a href="/tags/嵌入式/" style="font-size: 20px;">嵌入式</a> <a href="/tags/技术/" style="font-size: 20px;">技术</a> <a href="/tags/物联网/" style="font-size: 10px;">物联网</a> <a href="/tags/电力电子/" style="font-size: 10px;">电力电子</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/胡想思想/" style="font-size: 15px;">胡想思想</a> <a href="/tags/软件配置/" style="font-size: 10px;">软件配置</a>
+        <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/RaspberryPI/" style="font-size: 12.5px;">RaspberryPI</a> <a href="/tags/STM32/" style="font-size: 17.5px;">STM32</a> <a href="/tags/Vue-js/" style="font-size: 10px;">Vue.js</a> <a href="/tags/做一个民科/" style="font-size: 15px;">做一个民科</a> <a href="/tags/前端/" style="font-size: 12.5px;">前端</a> <a href="/tags/嵌入式/" style="font-size: 20px;">嵌入式</a> <a href="/tags/技术/" style="font-size: 20px;">技术</a> <a href="/tags/物联网/" style="font-size: 10px;">物联网</a> <a href="/tags/电力电子/" style="font-size: 10px;">电力电子</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/胡想思想/" style="font-size: 15px;">胡想思想</a> <a href="/tags/软件配置/" style="font-size: 12.5px;">软件配置</a>
     </div>
 </div>
 
@@ -1000,8 +1007,27 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recientes
+            Terbaru
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/04/02/OpenOCD在虚拟机中使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/stm32debug.jpg" alt="OpenOCD在虚拟机中的使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-01T16:00:00.000Z">2020-04-02</time></div>
+                    <a href="/2020/04/02/OpenOCD在虚拟机中使用/" class="has-link-black-ter is-size-6">OpenOCD在虚拟机中的使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/软件配置/">软件配置</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1062,25 +1088,6 @@
         
         <article class="media">
             
-            <a href="/2019/10/09/流水线劳动需要的智力/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/think.jpg" alt="流水线劳动需要的智力思考">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T16:00:00.000Z">2019-10-09</time></div>
-                    <a href="/2019/10/09/流水线劳动需要的智力/" class="has-link-black-ter is-size-6">流水线劳动需要的智力思考</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/胡想思想/">胡想思想</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2019/10/09/人类控制和自动控制系统的区别/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/think.jpg" alt="人类控制和自动控制系统的区别">
@@ -1106,9 +1113,20 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archivos
+            Arsip
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/02/">
@@ -1163,7 +1181,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Etiquetas
+                Tag
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -1254,7 +1272,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/软件配置/">
                         <span class="tag">软件配置</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1278,8 +1296,27 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recientes
+            Terbaru
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/04/02/OpenOCD在虚拟机中使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/stm32debug.jpg" alt="OpenOCD在虚拟机中的使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-01T16:00:00.000Z">2020-04-02</time></div>
+                    <a href="/2020/04/02/OpenOCD在虚拟机中使用/" class="has-link-black-ter is-size-6">OpenOCD在虚拟机中的使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/软件配置/">软件配置</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1340,25 +1377,6 @@
         
         <article class="media">
             
-            <a href="/2019/10/09/流水线劳动需要的智力/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/think.jpg" alt="流水线劳动需要的智力思考">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T16:00:00.000Z">2019-10-09</time></div>
-                    <a href="/2019/10/09/流水线劳动需要的智力/" class="has-link-black-ter is-size-6">流水线劳动需要的智力思考</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/胡想思想/">胡想思想</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2019/10/09/人类控制和自动控制系统的区别/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/think.jpg" alt="人类控制和自动控制系统的区别">
@@ -1384,9 +1402,20 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archivos
+            Arsip
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/02/">
@@ -1441,7 +1470,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Etiquetas
+                Tag
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -1532,7 +1561,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/软件配置/">
                         <span class="tag">软件配置</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1665,7 +1694,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
 
-<a id="back-to-top" title="Back to Top" href="javascript:;">
+<a id="back-to-top" title="Kembali ke atas" href="javascript:;">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
@@ -1699,7 +1728,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Tulis Sesuatu..">
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -1711,11 +1740,11 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Entradas',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categorias',
-                TAGS: 'Etiquetas',
-                UNTITLED: '(Untitled)',
+                POSTS: 'Artikel',
+                PAGES: 'Halaman',
+                CATEGORIES: 'Kategori',
+                TAGS: 'Tag',
+                UNTITLED: 'Tanpa Judul',
             },
             CONTENT_URL: '/content.json',
         };

@@ -123,7 +123,7 @@
                 
                 
                 
-                <a class="navbar-item search" title="Pencarian" href="javascript:;">
+                <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
                 </a>
                 
@@ -139,7 +139,7 @@
     <div class="card-content">
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
-            <li><a href="/tags">Tag</a></li>
+            <li><a href="/tags">Tags</a></li>
             <li class="is-active"><a href="#" aria-current="page">软件配置</a></li>
         </ul>
         </nav>
@@ -168,7 +168,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes membaca (Sekitar 403 kata)
+                    3 minutes read (About 404 words)
                 </span>
                 
                 
@@ -184,23 +184,16 @@
             <hr>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><hr>
 <p>在Vmware的ESXI虚拟机中使用OpenOCD的时候，一直提示找不到STM32的仿真器。</p>
-<p>在系统硬件中可以看到连接的USB设备。</p>
-<p>OpenOCD已经是<a href="!https://gnutoolchains.com/arm-eabi/openocd/">最新版本20200310</a>。</p>
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><hr>
-<p>经过查找后，确定原因是OpenOCD使用的libusb不能透过非libusb驱动的hub（恰好这是vmware实现USB映射的方法）找到此hub之下的libusb设备。</p>
-<p>补充一个<a href="!https://sourceforge.net/p/libusb/mailman/message/29994078/">链接</a>。</p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><hr>
-<p>经测试，最新版本的libusb已经支持了在hub下的设备遍历。测试方法就是下载最新版本的<a href="!https://github.com/libusb/libusb">libusb</a>并执行遍历的测试，可以看到设备。显然旧版本的看不到。</p>
-<p>确定办法就是重新编译最新版本的OpenOCD，并且替换为最新版本的libusb。（注意要先用cygwin安装libusb，然后替换libusb）</p>
-<p>编译步骤（<a href="!https://mindchasers.com/dev/openocd-darsena-windows">参考此处</a>）：</p>
-<p>但是注意到编译过程中可能出现一些错误，原因是windows下这个cygwin编译器和makefile不匹配，在Makefile里找到-Wxxxx关闭就可以了。</p>
-<p>当然由于目录设置的问题，OpenOCD要放在C盘根目录下，还要调整编译选项：C:\OpenOCD。</p>
-<p>说了这么多，太麻烦了。</p>
-<pre><code>链接：https://pan.baidu.com/s/11m8PbTbFTZYaSNV9kcsD6g 
-提取码：na3f 
-复制这段内容后打开百度网盘手机App，操作更方便哦</code></pre>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/04/02/OpenOCD在虚拟机中使用/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -235,7 +228,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes membaca (Sekitar 335 kata)
+                    2 minutes read (About 335 words)
                 </span>
                 
                 
@@ -259,7 +252,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/01/在社区版Seafile中使用AD认证/#more">Selengkapnya</a>
+                <a class="button is-size-7 is-light" href="/2020/02/01/在社区版Seafile中使用AD认证/#more">Read More</a>
                 </div>
             </div>
         </div>
@@ -315,7 +308,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Artikel
+                        Articles
                     </p>
                     <p class="title has-text-weight-normal">
                         16
@@ -325,7 +318,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Kategori
+                        Catégories
                     </p>
                     <p class="title has-text-weight-normal">
                         9
@@ -335,7 +328,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Tag
+                        Tags
                     </p>
                     <p class="title has-text-weight-normal">
                         13
@@ -345,7 +338,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/jifanchn" target="_blank">
-                IKUTI</a>
+                SUIVRE</a>
         </div>
         
         
@@ -370,7 +363,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Tautan
+            Liens
         </h3>
         <ul class="menu-list">
         
@@ -419,7 +412,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Kategori
+                Catégories
             </h3>
             <ul class="menu-list">
             <li>
@@ -504,7 +497,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Awan tag
+            Nuage de tags
         </h3>
         <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/RaspberryPI/" style="font-size: 12.5px;">RaspberryPI</a> <a href="/tags/STM32/" style="font-size: 17.5px;">STM32</a> <a href="/tags/Vue-js/" style="font-size: 10px;">Vue.js</a> <a href="/tags/做一个民科/" style="font-size: 15px;">做一个民科</a> <a href="/tags/前端/" style="font-size: 12.5px;">前端</a> <a href="/tags/嵌入式/" style="font-size: 20px;">嵌入式</a> <a href="/tags/技术/" style="font-size: 20px;">技术</a> <a href="/tags/物联网/" style="font-size: 10px;">物联网</a> <a href="/tags/电力电子/" style="font-size: 10px;">电力电子</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/胡想思想/" style="font-size: 15px;">胡想思想</a> <a href="/tags/软件配置/" style="font-size: 12.5px;">软件配置</a>
     </div>
@@ -518,7 +511,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Terbaru
+            Récents
         </h3>
         
         <article class="media">
@@ -580,25 +573,6 @@
         
         <article class="media">
             
-            <a href="/2019/10/09/控制系统的限制条件/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/think.jpg" alt="流水线劳动需要的智力思考">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T16:00:00.000Z">2019-10-09</time></div>
-                    <a href="/2019/10/09/控制系统的限制条件/" class="has-link-black-ter is-size-6">流水线劳动需要的智力思考</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/胡想思想/">胡想思想</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2019/10/09/人类控制和自动控制系统的区别/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/think.jpg" alt="人类控制和自动控制系统的区别">
@@ -616,6 +590,25 @@
             </div>
         </article>
         
+        <article class="media">
+            
+            <a href="/2019/10/09/流水线劳动需要的智力/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/think.jpg" alt="流水线劳动需要的智力思考">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T16:00:00.000Z">2019-10-09</time></div>
+                    <a href="/2019/10/09/流水线劳动需要的智力/" class="has-link-black-ter is-size-6">流水线劳动需要的智力思考</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/胡想思想/">胡想思想</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
     </div>
 </div>
 
@@ -624,7 +617,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Arsip
+            Archives
         </h3>
         <ul class="menu-list">
         
@@ -692,7 +685,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tag
+                Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -807,7 +800,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Terbaru
+            Récents
         </h3>
         
         <article class="media">
@@ -869,25 +862,6 @@
         
         <article class="media">
             
-            <a href="/2019/10/09/控制系统的限制条件/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/think.jpg" alt="流水线劳动需要的智力思考">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T16:00:00.000Z">2019-10-09</time></div>
-                    <a href="/2019/10/09/控制系统的限制条件/" class="has-link-black-ter is-size-6">流水线劳动需要的智力思考</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/胡想思想/">胡想思想</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2019/10/09/人类控制和自动控制系统的区别/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/think.jpg" alt="人类控制和自动控制系统的区别">
@@ -905,6 +879,25 @@
             </div>
         </article>
         
+        <article class="media">
+            
+            <a href="/2019/10/09/流水线劳动需要的智力/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/think.jpg" alt="流水线劳动需要的智力思考">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T16:00:00.000Z">2019-10-09</time></div>
+                    <a href="/2019/10/09/流水线劳动需要的智力/" class="has-link-black-ter is-size-6">流水线劳动需要的智力思考</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/胡想思想/">胡想思想</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
     </div>
 </div>
 
@@ -913,7 +906,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Arsip
+            Archives
         </h3>
         <ul class="menu-list">
         
@@ -981,7 +974,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tag
+                Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -1205,7 +1198,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
 
-<a id="back-to-top" title="Kembali ke atas" href="javascript:;">
+<a id="back-to-top" title="Back to Top" href="javascript:;">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
@@ -1239,7 +1232,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Tulis Sesuatu..">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -1251,11 +1244,11 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Artikel',
-                PAGES: 'Halaman',
-                CATEGORIES: 'Kategori',
-                TAGS: 'Tag',
-                UNTITLED: 'Tanpa Judul',
+                POSTS: 'Articles',
+                PAGES: 'Pages',
+                CATEGORIES: 'Catégories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
             },
             CONTENT_URL: '/content.json',
         };

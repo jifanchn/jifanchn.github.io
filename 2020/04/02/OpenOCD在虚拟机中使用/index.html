@@ -7,19 +7,19 @@
 
 
 
-    <meta name="description" content="问题 在Vmware的ESXI虚拟机中使用OpenOCD的时候，一直提示找不到STM32的仿真器。 在系统硬件中可以看到连接的USB设备。 OpenOCD已经是最新版本20200310。 原因 经过查找后，确定原因是OpenOCD使用的libusb不能透过非libusb驱动的hub（恰好这是vmware实现USB映射的方法）找到此hub之下的libusb设备。 补充一个链接。 解决方法 经测试，">
+    <meta name="description" content="问题 在Vmware的ESXI虚拟机中使用OpenOCD的时候，一直提示找不到STM32的仿真器。">
 <meta name="keywords" content="软件配置">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenOCD在虚拟机中的使用">
 <meta property="og:url" content="http://jifachn.github.io/2020/04/02/OpenOCD在虚拟机中使用/index.html">
 <meta property="og:site_name" content="十几秒的光照">
-<meta property="og:description" content="问题 在Vmware的ESXI虚拟机中使用OpenOCD的时候，一直提示找不到STM32的仿真器。 在系统硬件中可以看到连接的USB设备。 OpenOCD已经是最新版本20200310。 原因 经过查找后，确定原因是OpenOCD使用的libusb不能透过非libusb驱动的hub（恰好这是vmware实现USB映射的方法）找到此hub之下的libusb设备。 补充一个链接。 解决方法 经测试，">
+<meta property="og:description" content="问题 在Vmware的ESXI虚拟机中使用OpenOCD的时候，一直提示找不到STM32的仿真器。">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="http://jifachn.github.io/images/stm32debug.jpg">
-<meta property="og:updated_time" content="2020-05-18T13:31:03.383Z">
+<meta property="og:updated_time" content="2020-05-18T13:39:20.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenOCD在虚拟机中的使用">
-<meta name="twitter:description" content="问题 在Vmware的ESXI虚拟机中使用OpenOCD的时候，一直提示找不到STM32的仿真器。 在系统硬件中可以看到连接的USB设备。 OpenOCD已经是最新版本20200310。 原因 经过查找后，确定原因是OpenOCD使用的libusb不能透过非libusb驱动的hub（恰好这是vmware实现USB映射的方法）找到此hub之下的libusb设备。 补充一个链接。 解决方法 经测试，">
+<meta name="twitter:description" content="问题 在Vmware的ESXI虚拟机中使用OpenOCD的时候，一直提示找不到STM32的仿真器。">
 <meta name="twitter:image" content="http://jifachn.github.io/images/stm32debug.jpg">
 
 
@@ -125,7 +125,7 @@
                 
                 
                 
-                <a class="navbar-item search" title="Pencarian" href="javascript:;">
+                <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
                 </a>
                 
@@ -159,7 +159,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes membaca (Sekitar 403 kata)
+                    3 minutes read (About 404 words)
                 </span>
                 
                 
@@ -175,6 +175,7 @@
             <hr>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><hr>
 <p>在Vmware的ESXI虚拟机中使用OpenOCD的时候，一直提示找不到STM32的仿真器。</p>
+<a id="more"></a>
 <p>在系统硬件中可以看到连接的USB设备。</p>
 <p>OpenOCD已经是<a href="!https://gnutoolchains.com/arm-eabi/openocd/">最新版本20200310</a>。</p>
 <h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><hr>
@@ -215,7 +216,7 @@
 
 <div class="card">
     <div class="card-content">
-        <h3 class="menu-label has-text-centered">Suka dengan artikel ini? Bantu penulis dengan donasi melalui</h3>
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
         <div class="buttons is-centered">
             
                 
@@ -262,7 +263,7 @@
 
 <div class="card">
     <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">Komentar</h3>
+        <h3 class="title is-5 has-text-weight-normal">Commentaires</h3>
         
 <div id="valine-thread" class="content"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
@@ -320,7 +321,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Artikel
+                        Articles
                     </p>
                     <p class="title has-text-weight-normal">
                         16
@@ -330,7 +331,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Kategori
+                        Catégories
                     </p>
                     <p class="title has-text-weight-normal">
                         9
@@ -340,7 +341,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Tag
+                        Tags
                     </p>
                     <p class="title has-text-weight-normal">
                         13
@@ -350,7 +351,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/jifanchn" target="_blank">
-                IKUTI</a>
+                SUIVRE</a>
         </div>
         
         
@@ -375,7 +376,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Tautan
+            Liens
         </h3>
         <ul class="menu-list">
         
@@ -424,7 +425,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Kategori
+                Catégories
             </h3>
             <ul class="menu-list">
             <li>
@@ -509,7 +510,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Awan tag
+            Nuage de tags
         </h3>
         <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/RaspberryPI/" style="font-size: 12.5px;">RaspberryPI</a> <a href="/tags/STM32/" style="font-size: 17.5px;">STM32</a> <a href="/tags/Vue-js/" style="font-size: 10px;">Vue.js</a> <a href="/tags/做一个民科/" style="font-size: 15px;">做一个民科</a> <a href="/tags/前端/" style="font-size: 12.5px;">前端</a> <a href="/tags/嵌入式/" style="font-size: 20px;">嵌入式</a> <a href="/tags/技术/" style="font-size: 20px;">技术</a> <a href="/tags/物联网/" style="font-size: 10px;">物联网</a> <a href="/tags/电力电子/" style="font-size: 10px;">电力电子</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/胡想思想/" style="font-size: 15px;">胡想思想</a> <a href="/tags/软件配置/" style="font-size: 12.5px;">软件配置</a>
     </div>
@@ -523,7 +524,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Terbaru
+            Récents
         </h3>
         
         <article class="media">
@@ -585,25 +586,6 @@
         
         <article class="media">
             
-            <a href="/2019/10/09/控制系统的限制条件/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/think.jpg" alt="流水线劳动需要的智力思考">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T16:00:00.000Z">2019-10-09</time></div>
-                    <a href="/2019/10/09/控制系统的限制条件/" class="has-link-black-ter is-size-6">流水线劳动需要的智力思考</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/胡想思想/">胡想思想</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2019/10/09/人类控制和自动控制系统的区别/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/think.jpg" alt="人类控制和自动控制系统的区别">
@@ -621,6 +603,25 @@
             </div>
         </article>
         
+        <article class="media">
+            
+            <a href="/2019/10/09/流水线劳动需要的智力/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/think.jpg" alt="流水线劳动需要的智力思考">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T16:00:00.000Z">2019-10-09</time></div>
+                    <a href="/2019/10/09/流水线劳动需要的智力/" class="has-link-black-ter is-size-6">流水线劳动需要的智力思考</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/胡想思想/">胡想思想</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
     </div>
 </div>
 
@@ -629,7 +630,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Arsip
+            Archives
         </h3>
         <ul class="menu-list">
         
@@ -697,7 +698,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tag
+                Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -812,7 +813,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Terbaru
+            Récents
         </h3>
         
         <article class="media">
@@ -874,25 +875,6 @@
         
         <article class="media">
             
-            <a href="/2019/10/09/控制系统的限制条件/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/think.jpg" alt="流水线劳动需要的智力思考">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T16:00:00.000Z">2019-10-09</time></div>
-                    <a href="/2019/10/09/控制系统的限制条件/" class="has-link-black-ter is-size-6">流水线劳动需要的智力思考</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/胡想思想/">胡想思想</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2019/10/09/人类控制和自动控制系统的区别/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/think.jpg" alt="人类控制和自动控制系统的区别">
@@ -910,6 +892,25 @@
             </div>
         </article>
         
+        <article class="media">
+            
+            <a href="/2019/10/09/流水线劳动需要的智力/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/think.jpg" alt="流水线劳动需要的智力思考">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T16:00:00.000Z">2019-10-09</time></div>
+                    <a href="/2019/10/09/流水线劳动需要的智力/" class="has-link-black-ter is-size-6">流水线劳动需要的智力思考</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/胡想思想/">胡想思想</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
     </div>
 </div>
 
@@ -918,7 +919,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Arsip
+            Archives
         </h3>
         <ul class="menu-list">
         
@@ -986,7 +987,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Tag
+                Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -1210,7 +1211,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
 
-<a id="back-to-top" title="Kembali ke atas" href="javascript:;">
+<a id="back-to-top" title="Back to Top" href="javascript:;">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
@@ -1244,7 +1245,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Tulis Sesuatu..">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something...">
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -1256,11 +1257,11 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Artikel',
-                PAGES: 'Halaman',
-                CATEGORIES: 'Kategori',
-                TAGS: 'Tag',
-                UNTITLED: 'Tanpa Judul',
+                POSTS: 'Articles',
+                PAGES: 'Pages',
+                CATEGORIES: 'Catégories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
             },
             CONTENT_URL: '/content.json',
         };

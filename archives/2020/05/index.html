@@ -2,25 +2,23 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>阿里云iotkit-embedded的坑 - 十几秒的光照</title>
+<title>Archives: 2020/5 - 十几秒的光照</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="硬件配置 STM32F103RCT6 (RAM 64kB, FLASH: 256kB)SIM800C  软件配置  STM32CubeMX 配置 FreeRTOSiotkit-embedded阿里云移植demo  iotkit-embedded配置 参考阿里云给出的demo，使用 1make menuconfig 配置">
-<meta name="keywords" content="STM32,嵌入式,技术,物联网">
-<meta property="og:type" content="article">
-<meta property="og:title" content="阿里云iotkit-embedded的坑">
-<meta property="og:url" content="http://jifachn.github.io/2019/07/19/阿里云iotkit-embedded的坑/index.html">
+    <meta name="description" content="记录个人生活，记录技术进阶">
+<meta property="og:type" content="website">
+<meta property="og:title" content="十几秒的光照">
+<meta property="og:url" content="http://jifachn.github.io/archives/2020/05/index.html">
 <meta property="og:site_name" content="十几秒的光照">
-<meta property="og:description" content="硬件配置 STM32F103RCT6 (RAM 64kB, FLASH: 256kB)SIM800C  软件配置  STM32CubeMX 配置 FreeRTOSiotkit-embedded阿里云移植demo  iotkit-embedded配置 参考阿里云给出的demo，使用 1make menuconfig 配置">
+<meta property="og:description" content="记录个人生活，记录技术进阶">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://jifachn.github.io/images/sim800c.jpg">
-<meta property="og:updated_time" content="2019-09-02T02:07:41.599Z">
+<meta property="og:image" content="http://jifachn.github.io/images/og_image.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="阿里云iotkit-embedded的坑">
-<meta name="twitter:description" content="硬件配置 STM32F103RCT6 (RAM 64kB, FLASH: 256kB)SIM800C  软件配置  STM32CubeMX 配置 FreeRTOSiotkit-embedded阿里云移植demo  iotkit-embedded配置 参考阿里云给出的demo，使用 1make menuconfig 配置">
-<meta name="twitter:image" content="http://jifachn.github.io/images/sim800c.jpg">
+<meta name="twitter:title" content="十几秒的光照">
+<meta name="twitter:description" content="记录个人生活，记录技术进阶">
+<meta name="twitter:image" content="http://jifachn.github.io/images/og_image.png">
 
 
 
@@ -94,7 +92,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/icon.ico" alt="阿里云iotkit-embedded的坑" height="28">
+                <img src="/images/icon.ico" alt="十几秒的光照" height="28">
             
             </a>
         </div>
@@ -137,212 +135,45 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    
-    <div class="card-image">
-        <span class="image is-7by1">
-            <img class="thumbnail" src="/images/sim800c.jpg" alt="阿里云iotkit-embedded的坑">
-        </span>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-18T16:00:00.000Z">2019-07-19</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/物联网/">物联网</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/物联网/嵌入式上云/">嵌入式上云</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    5 minutes read (About 784 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                阿里云iotkit-embedded的坑
-            
-        </h1>
-        <div class="content">
-            <hr>
-<h2 id="硬件配置"><a href="#硬件配置" class="headerlink" title="硬件配置"></a>硬件配置</h2><blockquote>
-<p>STM32F103RCT6 (RAM 64kB, FLASH: 256kB)<br>SIM800C</p>
-</blockquote>
-<h2 id="软件配置"><a href="#软件配置" class="headerlink" title="软件配置"></a>软件配置</h2><hr>
-<blockquote>
-<p>STM32CubeMX 配置 FreeRTOS<br><a href="https://github.com/aliyun/iotkit-embedded" target="_blank" rel="noopener">iotkit-embedded</a><br><a href="https://help.aliyun.com/document_detail/111167.html" target="_blank" rel="noopener">阿里云移植demo</a></p>
-</blockquote>
-<h2 id="iotkit-embedded配置"><a href="#iotkit-embedded配置" class="headerlink" title="iotkit-embedded配置"></a>iotkit-embedded配置</h2><hr>
-<p>参考阿里云给出的demo，使用</p>
-<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make menuconfig</span><br></pre></td></tr></table></figure>
-<p>配置</p>
-<a id="more"></a>
-<p>配置时参考阿里云Demo，但要注意：</p>
-<blockquote>
-<p>不要使能PLATFORM_HAS_DYNMEM</p>
-<blockquote>
-<ol>
-<li>频繁从FreeRTOS内部申请内存没有必要，固定内存区域更安全</li>
-<li>FreeRTOS调度申请内存有很多种算法，我并不能完全了解</li>
-</ol>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>不要使能PLATFORM_HAS_OS</p>
-<blockquote>
-<ol>
-<li>貌似这部分代码在本文写出时还不太完善</li>
-<li>SIM800C初始化部分需要改造，频繁申请Mutex和Semaphore</li>
-</ol>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>不要使用OTA功能</p>
-<blockquote>
-<p>没有SSL，玩不起来</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>配置完成后编译时缺个log库，include删除就好</p>
-</blockquote>
-<h2 id="移植"><a href="#移植" class="headerlink" title="移植"></a>移植</h2><hr>
-<p>移植wrapper.c</p>
-<blockquote>
-<p>把所有的Mutex和Semaphore相关的函数全部返回正常（看一下头部说明）<br>一定要实现HAL_Snprintf，<a href="https://stackoverflow.com/questions/1056411/how-to-pass-variable-number-of-arguments-to-printf-sprintf" target="_blank" rel="noopener">参考</a><br>HAL_SleepMS使用osDelay实现<br>Malloc使用pvPortMalloc(), HAL_Free使用vPortFree()</p>
-<blockquote>
-<p>不得不说的是，即使你关闭了PLATFORM_HAS_DYNMEM，iotkit-embedded还是会调用这个函数，我记得出现在上报版本信息这个函数中</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>HAL_AT_Uart_Send使用HAL_UART_Transmit_IT连续发送，并在发送结束后判断gState，使用osDelay让出时间片<br>HAL_AT_Uart_Recv使用STM32串口文章中所提的方法，用队列接收，并自定义超时<br>注意一下iotx_mqtt_config.h中的IOTX_MC_TX_MAX_LEN以及IOTX_MC_RX_MAX_LEN，数据千万不要超了，或者修改宏定义，不然找都找不到在哪出错<br>CONFIG_MQTT_TOPIC_MAXLEN这个最大的topic长度八成不够长，自己改下就好。<br>最最重要的一个坑：</p>
-<blockquote>
-<p>千万不要把example_publish这个函数中的内容分成几个函数块调用<br>原因是IOT_MQTT_Construct(&amp;mqtt_params)这个函数内会直接使用mqtt_params的字符串，并保存；当你再使用yield以及publish这些函数时，有可能会重新连接，造成野指针程序跑飞。</p>
-</blockquote>
-</blockquote>
-<h2 id="重启SIM800C"><a href="#重启SIM800C" class="headerlink" title="重启SIM800C"></a>重启SIM800C</h2><hr>
-<p>担心SIM800C会挂，以及网络失败，需要hack一下代码</p>
-<blockquote>
-<p>定时以及发现一直连接失败时重启sim800C<br>只需要改造IOT_ATM_Init以及它调用的函数</p>
-<blockquote>
-<p>忽略at_parser_init返回的错误<br>设置reset_sim800c标签，在at_conn_init内重置at_conn_init_done（因为要把atconnects重置）<br>HAL_AT_CONN_Init内重置inited，这样它会重新检测sim800的状态。</p>
-</blockquote>
-</blockquote>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><hr>
-<p>暂时只能想起这么多了，如果有遗漏那么抱歉了。。</p>
-<p>开源库不是那么好用，想用上，是要付出代价的。</p>
-<h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><hr>
-<h4 id="为什么不提PR？"><a href="#为什么不提PR？" class="headerlink" title="为什么不提PR？"></a>为什么不提PR？</h4><blockquote>
-<p>因为大部分其实不是bug，只是没有相关文档，我们不知道而已。</p>
-</blockquote>
-<h4 id="为什么不放出代码？"><a href="#为什么不放出代码？" class="headerlink" title="为什么不放出代码？"></a>为什么不放出代码？</h4><blockquote>
-<p>公司代码。</p>
-</blockquote>
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
 
-        </div>
-        
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/STM32/">STM32</a>, <a class="has-link-grey -link" href="/tags/嵌入式/">嵌入式</a>, <a class="has-link-grey -link" href="/tags/技术/">技术</a>, <a class="has-link-grey -link" href="/tags/物联网/">物联网</a>
-                </div>
-            </div>
-        </div>
-        
-        
-        
-        
-<div class="addthis_inline_share_toolbox"></div>
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d316e9c1160c7d1"></script>
-
-        
-    </div>
-</div>
-
-
-
-<div class="card">
+<div class="card widget">
     <div class="card-content">
-        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
-        <div class="buttons is-centered">
-            
+        <h3 class="tag is-link">
+        May 2020
+        </h3>
+        <div class="timeline">
+        
+            <article class="media">
                 
-<a class="button is-info donate">
-    <span class="icon is-small">
-        <i class="fab fa-alipay"></i>
-    </span>
-    <span>Alipay</span>
-    <div class="qrcode"><img src="/images/alipay.jpg" alt="Alipay"></div>
-</a>
-
+                <a href="/2020/05/19/Active Directory明文密码存储/" class="media-left">
+                    <p class="image is-64x64">
+                        <img class="thumbnail" src="/images/password.jpg" alt="Active Directory明文密码存储">
+                    </p>
+                </a>
                 
-                
-<a class="button is-success donate">
-    <span class="icon is-small">
-        <i class="fab fa-weixin"></i>
-    </span>
-    <span>Wechat</span>
-    <div class="qrcode"><img src="/images/wechat.jpg" alt="Wechat"></div>
-</a>
-
-                
+                <div class="media-content">
+                    <div class="content">
+                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-05-18T16:00:00.000Z">2020-05-19</time>
+                        <a href="/2020/05/19/Active Directory明文密码存储/" class="has-link-black-ter is-size-6">Active Directory明文密码存储</a>
+                        <div class="level article-meta is-mobile">
+                            <div class="level-left">
+                                
+                                <div class="level-item is-size-7 is-uppercase">
+                                <a class="has-link-grey -link" href="/categories/软件配置/">软件配置</a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        
         </div>
     </div>
 </div>
 
 
-
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/07/19/STM32 HAL库I2C注意点/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">STM32 HAL库I2C注意点</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/19/STM32 HAL库串口注意点/">
-                <span class="level-item">STM32 HAL库串口注意点</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
-
-
-
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
-        
-<div id="valine-thread" class="content"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-    new Valine({
-        el: '#valine-thread' ,
-        notify: false,
-        verify: false,
-        app_id: 'RATyl6VnqVrJ9vdOJ7pnV4Tm-gzGzoHsz',
-        app_key: '9VbSxXpKmqWK8a7Demqi0s2f',
-        placeholder: 'Insert your comment'
-    });
-</script>
-
-    </div>
-</div>
 </div>
                 
 
@@ -1183,7 +1014,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/icon.ico" alt="阿里云iotkit-embedded的坑" height="28">
+                    <img src="/images/icon.ico" alt="十几秒的光照" height="28">
                 
                 </a>
                 <p class="is-size-7">

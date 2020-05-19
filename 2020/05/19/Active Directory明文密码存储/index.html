@@ -2,25 +2,25 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>阿里云iotkit-embedded的坑 - 十几秒的光照</title>
+<title>Active Directory明文密码存储 - 十几秒的光照</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="硬件配置 STM32F103RCT6 (RAM 64kB, FLASH: 256kB)SIM800C  软件配置  STM32CubeMX 配置 FreeRTOSiotkit-embedded阿里云移植demo  iotkit-embedded配置 参考阿里云给出的demo，使用 1make menuconfig 配置">
-<meta name="keywords" content="STM32,嵌入式,技术,物联网">
+    <meta name="description" content="背景 Active Directory(AD)，即Windows的域帐户系统，用于很多公司的IT系统，管理公司计算机和人员帐号。 但是许多第三方系统并不对接AD域控（如腾讯企业邮箱），同时AD默认是不可逆转的加密策略（即单向的Hash算法）。 明文存储用户帐号密码成为了不得以的手段。">
+<meta name="keywords" content="软件配置">
 <meta property="og:type" content="article">
-<meta property="og:title" content="阿里云iotkit-embedded的坑">
-<meta property="og:url" content="http://jifachn.github.io/2019/07/19/阿里云iotkit-embedded的坑/index.html">
+<meta property="og:title" content="Active Directory明文密码存储">
+<meta property="og:url" content="http://jifachn.github.io/2020/05/19/Active Directory明文密码存储/index.html">
 <meta property="og:site_name" content="十几秒的光照">
-<meta property="og:description" content="硬件配置 STM32F103RCT6 (RAM 64kB, FLASH: 256kB)SIM800C  软件配置  STM32CubeMX 配置 FreeRTOSiotkit-embedded阿里云移植demo  iotkit-embedded配置 参考阿里云给出的demo，使用 1make menuconfig 配置">
+<meta property="og:description" content="背景 Active Directory(AD)，即Windows的域帐户系统，用于很多公司的IT系统，管理公司计算机和人员帐号。 但是许多第三方系统并不对接AD域控（如腾讯企业邮箱），同时AD默认是不可逆转的加密策略（即单向的Hash算法）。 明文存储用户帐号密码成为了不得以的手段。">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://jifachn.github.io/images/sim800c.jpg">
-<meta property="og:updated_time" content="2019-09-02T02:07:41.599Z">
+<meta property="og:image" content="http://jifachn.github.io/images/password.jpg">
+<meta property="og:updated_time" content="2020-05-19T11:06:13.928Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="阿里云iotkit-embedded的坑">
-<meta name="twitter:description" content="硬件配置 STM32F103RCT6 (RAM 64kB, FLASH: 256kB)SIM800C  软件配置  STM32CubeMX 配置 FreeRTOSiotkit-embedded阿里云移植demo  iotkit-embedded配置 参考阿里云给出的demo，使用 1make menuconfig 配置">
-<meta name="twitter:image" content="http://jifachn.github.io/images/sim800c.jpg">
+<meta name="twitter:title" content="Active Directory明文密码存储">
+<meta name="twitter:description" content="背景 Active Directory(AD)，即Windows的域帐户系统，用于很多公司的IT系统，管理公司计算机和人员帐号。 但是许多第三方系统并不对接AD域控（如腾讯企业邮箱），同时AD默认是不可逆转的加密策略（即单向的Hash算法）。 明文存储用户帐号密码成为了不得以的手段。">
+<meta name="twitter:image" content="http://jifachn.github.io/images/password.jpg">
 
 
 
@@ -94,7 +94,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/icon.ico" alt="阿里云iotkit-embedded的坑" height="28">
+                <img src="/images/icon.ico" alt="Active Directory明文密码存储" height="28">
             
             </a>
         </div>
@@ -141,7 +141,7 @@
     
     <div class="card-image">
         <span class="image is-7by1">
-            <img class="thumbnail" src="/images/sim800c.jpg" alt="阿里云iotkit-embedded的坑">
+            <img class="thumbnail" src="/images/password.jpg" alt="Active Directory明文密码存储">
         </span>
     </div>
     
@@ -149,17 +149,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-18T16:00:00.000Z">2019-07-19</time>
+                <time class="level-item has-text-grey" datetime="2020-05-18T16:00:00.000Z">2020-05-19</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/物联网/">物联网</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/物联网/嵌入式上云/">嵌入式上云</a>
+                <a class="has-link-grey -link" href="/categories/软件配置/">软件配置</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 784 words)
+                    5 minutes read (About 718 words)
                 </span>
                 
                 
@@ -168,83 +168,49 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                阿里云iotkit-embedded的坑
+                Active Directory明文密码存储
             
         </h1>
         <div class="content">
             <hr>
-<h2 id="硬件配置"><a href="#硬件配置" class="headerlink" title="硬件配置"></a>硬件配置</h2><blockquote>
-<p>STM32F103RCT6 (RAM 64kB, FLASH: 256kB)<br>SIM800C</p>
-</blockquote>
-<h2 id="软件配置"><a href="#软件配置" class="headerlink" title="软件配置"></a>软件配置</h2><hr>
-<blockquote>
-<p>STM32CubeMX 配置 FreeRTOS<br><a href="https://github.com/aliyun/iotkit-embedded" target="_blank" rel="noopener">iotkit-embedded</a><br><a href="https://help.aliyun.com/document_detail/111167.html" target="_blank" rel="noopener">阿里云移植demo</a></p>
-</blockquote>
-<h2 id="iotkit-embedded配置"><a href="#iotkit-embedded配置" class="headerlink" title="iotkit-embedded配置"></a>iotkit-embedded配置</h2><hr>
-<p>参考阿里云给出的demo，使用</p>
-<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make menuconfig</span><br></pre></td></tr></table></figure>
-<p>配置</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><hr>
+<p>Active Directory(AD)，即Windows的域帐户系统，用于很多公司的IT系统，管理公司计算机和人员帐号。</p>
+<p>但是许多第三方系统并不对接AD域控（如腾讯企业邮箱），同时AD默认是不可逆转的加密策略（即单向的Hash算法）。</p>
+<p>明文存储用户帐号密码成为了不得以的手段。</p>
 <a id="more"></a>
-<p>配置时参考阿里云Demo，但要注意：</p>
-<blockquote>
-<p>不要使能PLATFORM_HAS_DYNMEM</p>
-<blockquote>
-<ol>
-<li>频繁从FreeRTOS内部申请内存没有必要，固定内存区域更安全</li>
-<li>FreeRTOS调度申请内存有很多种算法，我并不能完全了解</li>
-</ol>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>不要使能PLATFORM_HAS_OS</p>
-<blockquote>
-<ol>
-<li>貌似这部分代码在本文写出时还不太完善</li>
-<li>SIM800C初始化部分需要改造，频繁申请Mutex和Semaphore</li>
-</ol>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>不要使用OTA功能</p>
-<blockquote>
-<p>没有SSL，玩不起来</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>配置完成后编译时缺个log库，include删除就好</p>
-</blockquote>
-<h2 id="移植"><a href="#移植" class="headerlink" title="移植"></a>移植</h2><hr>
-<p>移植wrapper.c</p>
-<blockquote>
-<p>把所有的Mutex和Semaphore相关的函数全部返回正常（看一下头部说明）<br>一定要实现HAL_Snprintf，<a href="https://stackoverflow.com/questions/1056411/how-to-pass-variable-number-of-arguments-to-printf-sprintf" target="_blank" rel="noopener">参考</a><br>HAL_SleepMS使用osDelay实现<br>Malloc使用pvPortMalloc(), HAL_Free使用vPortFree()</p>
-<blockquote>
-<p>不得不说的是，即使你关闭了PLATFORM_HAS_DYNMEM，iotkit-embedded还是会调用这个函数，我记得出现在上报版本信息这个函数中</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>HAL_AT_Uart_Send使用HAL_UART_Transmit_IT连续发送，并在发送结束后判断gState，使用osDelay让出时间片<br>HAL_AT_Uart_Recv使用STM32串口文章中所提的方法，用队列接收，并自定义超时<br>注意一下iotx_mqtt_config.h中的IOTX_MC_TX_MAX_LEN以及IOTX_MC_RX_MAX_LEN，数据千万不要超了，或者修改宏定义，不然找都找不到在哪出错<br>CONFIG_MQTT_TOPIC_MAXLEN这个最大的topic长度八成不够长，自己改下就好。<br>最最重要的一个坑：</p>
-<blockquote>
-<p>千万不要把example_publish这个函数中的内容分成几个函数块调用<br>原因是IOT_MQTT_Construct(&amp;mqtt_params)这个函数内会直接使用mqtt_params的字符串，并保存；当你再使用yield以及publish这些函数时，有可能会重新连接，造成野指针程序跑飞。</p>
-</blockquote>
-</blockquote>
-<h2 id="重启SIM800C"><a href="#重启SIM800C" class="headerlink" title="重启SIM800C"></a>重启SIM800C</h2><hr>
-<p>担心SIM800C会挂，以及网络失败，需要hack一下代码</p>
-<blockquote>
-<p>定时以及发现一直连接失败时重启sim800C<br>只需要改造IOT_ATM_Init以及它调用的函数</p>
-<blockquote>
-<p>忽略at_parser_init返回的错误<br>设置reset_sim800c标签，在at_conn_init内重置at_conn_init_done（因为要把atconnects重置）<br>HAL_AT_CONN_Init内重置inited，这样它会重新检测sim800的状态。</p>
-</blockquote>
-</blockquote>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><hr>
-<p>暂时只能想起这么多了，如果有遗漏那么抱歉了。。</p>
-<p>开源库不是那么好用，想用上，是要付出代价的。</p>
-<h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><hr>
-<h4 id="为什么不提PR？"><a href="#为什么不提PR？" class="headerlink" title="为什么不提PR？"></a>为什么不提PR？</h4><blockquote>
-<p>因为大部分其实不是bug，只是没有相关文档，我们不知道而已。</p>
-</blockquote>
-<h4 id="为什么不放出代码？"><a href="#为什么不放出代码？" class="headerlink" title="为什么不放出代码？"></a>为什么不放出代码？</h4><blockquote>
-<p>公司代码。</p>
-</blockquote>
+
+<h2 id="允许Windows-AD使用Reversible-Encryption存储密码"><a href="#允许Windows-AD使用Reversible-Encryption存储密码" class="headerlink" title="允许Windows AD使用Reversible Encryption存储密码"></a>允许Windows AD使用Reversible Encryption存储密码</h2><hr>
+<p><a href="https://adsecurity.org/?p=2053" target="_blank" rel="noopener">参考这里</a>。</p>
+<p>我使用的办法是第一条，也就是在Windows组策略中默认打开允许可逆加密存储密码。</p>
+<p>Computer Configuration -&gt; Policies -&gt; Windows Settings -&gt; Security Settings -&gt; Account Policies -&gt; Password Policy -&gt; Store passwords using reversible encryption</p>
+<p>改为Enable。</p>
+<p>注意，所有已创建的帐号必须重新改密码才能生效。</p>
+<h2 id="自助密码修改工具"><a href="#自助密码修改工具" class="headerlink" title="自助密码修改工具"></a>自助密码修改工具</h2><hr>
+<p>在企业部署不完善的时候，很多用户的计算机没有加入AD域，那么就需要一个修改密码的系统。</p>
+<p><a href="https://www.yeboyzq.com/linux/ruanjiananzhuangweihu/1117.html" target="_blank" rel="noopener">参考此处</a></p>
+<p>配置例子</p>
+<p>config.inc.local.php:</p>
+<p>注意配置下面几项（踩了很多坑，大家不要踩坑就好）：</p>
+<figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;?php</span></span><br><span class="line">$ldap_url = <span class="hljs-string">"ldaps://"</span>;</span><br><span class="line">$ldap_binddn = <span class="hljs-string">"cn=Administrator,cn=Users,dc=your_domain,dc=com"</span>;</span><br><span class="line">$ldap_bindpw = <span class="hljs-string">"your_admin_password"</span>;</span><br><span class="line">$ldap_starttls = <span class="hljs-keyword">false</span>;</span><br><span class="line">$ldap_base = <span class="hljs-string">"ou=,dc=,dc=com"</span>;</span><br><span class="line">$ldap_login_attribute = <span class="hljs-string">"sAMAccountName"</span>;</span><br><span class="line">$ldap_fullname_attribute = <span class="hljs-string">"cn"</span>;</span><br><span class="line">$login_forbidden_chars = <span class="hljs-string">"*()&amp;|"</span>;</span><br><span class="line">$ad_mode = <span class="hljs-keyword">true</span>;</span><br><span class="line">$ldap_filter = <span class="hljs-string">"(&amp;(objectClass=user)(sAMAccountName=&#123;login&#125;)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))"</span>;</span><br><span class="line">$ad_options[<span class="hljs-string">'force_unlock'</span>] = <span class="hljs-keyword">true</span>;</span><br><span class="line">$ad_options[<span class="hljs-string">'force_pwd_change'</span>] = <span class="hljs-keyword">false</span>;</span><br><span class="line">$ad_options[<span class="hljs-string">'change_expired_password'</span>] = <span class="hljs-keyword">true</span>;</span><br><span class="line">$use_change = <span class="hljs-keyword">true</span>;</span><br><span class="line">$who_change_password = <span class="hljs-string">"manager"</span>;</span><br></pre></td></tr></table></figure>
+<p>Dockerfile:</p>
+<p>关闭TLS验证，防止证书验证失败导致无法连接域控服务器（同时注意部署的节点上所有的路由千万要受控）</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FROM php:7.2.8-apache-stretch</span><br><span class="line"></span><br><span class="line">RUN apt update &amp;&amp; apt install -y libldap2-dev \</span><br><span class="line">		&amp;&amp; docker-php-ext-install ldap</span><br><span class="line">RUN <span class="hljs-built_in">echo</span> <span class="hljs-string">"TLS_REQCERT allow"</span> &gt; /etc/ldap/ldap.conf</span><br><span class="line">RUN curl https://ltb-project.org/archives/ltb-project-self-service-password-1.3.tar.gz|tar zxf - -C /var/www/html --strip-components=1</span><br></pre></td></tr></table></figure>
+
+<p>docker-compose.yaml:</p>
+<p>映射配置文件，将容器的80端口映射到本机的8080端口。</p>
+<figure class="highlight yaml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">version:</span> <span class="hljs-string">'2.3'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-attr">services:</span></span><br><span class="line"><span class="hljs-attr">  ldap-self-service-password:</span></span><br><span class="line">	<span class="hljs-attr">build:</span> <span class="hljs-string">.</span></span><br><span class="line">	<span class="hljs-attr">image:</span> <span class="hljs-string">ldap-self-service-password-image</span></span><br><span class="line">	<span class="hljs-attr">container_name:</span> <span class="hljs-string">ldap-self-service</span></span><br><span class="line">	<span class="hljs-attr">volumes:</span></span><br><span class="line">	  <span class="hljs-bullet">-</span> <span class="hljs-string">./config.inc.local.php:/var/www/html/conf/config.inc.php</span></span><br><span class="line">	<span class="hljs-attr">ports:</span></span><br><span class="line">	  <span class="hljs-bullet">-</span> <span class="hljs-string">'8080:80'</span></span><br></pre></td></tr></table></figure>
+
+<p>nginx不再赘述了。</p>
+<p>启动容器：</p>
+<pre><code>docker-compose up -d --build</code></pre><h2 id="导出密码"><a href="#导出密码" class="headerlink" title="导出密码"></a>导出密码</h2><hr>
+<p>这里使用了一个<a href="https://github.com/SecureAuthCorp/impacket/blob/master/examples/secretsdump.py" target="_blank" rel="noopener">脚本</a></p>
+<p>不熟python的话可以看一下<a href="https://blog.csdn.net/u011771047/article/details/74214591。" target="_blank" rel="noopener">https://blog.csdn.net/u011771047/article/details/74214591。</a></p>
+<p>主要就是先安装python3（或者集成了很多库的anaconda3），然后用pip安装依赖。</p>
+<p>安装依赖包argparse与impacket后，下载这个脚本</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python secretsdump.py -dc-ip your_domain_ip administrator@you_domain_name.com -outputfile output</span><br></pre></td></tr></table></figure>
+
+<p>运行中会要求输入administrator的密码</p>
+<p>成功后 output.ntds.cleartext 中有帐号的明文密码，可以用来去各网站调用API同步帐号了。</p>
 
         </div>
         
@@ -252,7 +218,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/STM32/">STM32</a>, <a class="has-link-grey -link" href="/tags/嵌入式/">嵌入式</a>, <a class="has-link-grey -link" href="/tags/技术/">技术</a>, <a class="has-link-grey -link" href="/tags/物联网/">物联网</a>
+                    <a class="has-link-grey -link" href="/tags/软件配置/">软件配置</a>
                 </div>
             </div>
         </div>
@@ -303,17 +269,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/07/19/STM32 HAL库I2C注意点/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">STM32 HAL库I2C注意点</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/19/STM32 HAL库串口注意点/">
-                <span class="level-item">STM32 HAL库串口注意点</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/04/02/OpenOCD在虚拟机中使用/">
+                <span class="level-item">OpenOCD在虚拟机中的使用</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -1183,7 +1142,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/icon.ico" alt="阿里云iotkit-embedded的坑" height="28">
+                    <img src="/images/icon.ico" alt="Active Directory明文密码存储" height="28">
                 
                 </a>
                 <p class="is-size-7">

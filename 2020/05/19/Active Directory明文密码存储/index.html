@@ -16,7 +16,7 @@
 <meta property="og:description" content="背景 Active Directory(AD)，即Windows的域帐户系统，用于很多公司的IT系统，管理公司计算机和人员帐号。 但是许多第三方系统并不对接AD域控（如腾讯企业邮箱），同时AD默认是不可逆转的加密策略（即单向的Hash算法）。 明文存储用户帐号密码成为了不得以的手段。">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="http://jifachn.github.io/images/password.jpg">
-<meta property="og:updated_time" content="2020-05-19T11:06:13.928Z">
+<meta property="og:updated_time" content="2020-05-19T11:10:02.488Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Active Directory明文密码存储">
 <meta name="twitter:description" content="背景 Active Directory(AD)，即Windows的域帐户系统，用于很多公司的IT系统，管理公司计算机和人员帐号。 但是许多第三方系统并不对接AD域控（如腾讯企业邮箱），同时AD默认是不可逆转的加密策略（即单向的Hash算法）。 明文存储用户帐号密码成为了不得以的手段。">
@@ -159,7 +159,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 718 words)
+                    5 minutes read (About 731 words)
                 </span>
                 
                 
@@ -190,10 +190,10 @@
 <p><a href="https://www.yeboyzq.com/linux/ruanjiananzhuangweihu/1117.html" target="_blank" rel="noopener">参考此处</a></p>
 <p>配置例子</p>
 <p>config.inc.local.php:</p>
-<p>注意配置下面几项（踩了很多坑，大家不要踩坑就好）：</p>
-<figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;?php</span></span><br><span class="line">$ldap_url = <span class="hljs-string">"ldaps://"</span>;</span><br><span class="line">$ldap_binddn = <span class="hljs-string">"cn=Administrator,cn=Users,dc=your_domain,dc=com"</span>;</span><br><span class="line">$ldap_bindpw = <span class="hljs-string">"your_admin_password"</span>;</span><br><span class="line">$ldap_starttls = <span class="hljs-keyword">false</span>;</span><br><span class="line">$ldap_base = <span class="hljs-string">"ou=,dc=,dc=com"</span>;</span><br><span class="line">$ldap_login_attribute = <span class="hljs-string">"sAMAccountName"</span>;</span><br><span class="line">$ldap_fullname_attribute = <span class="hljs-string">"cn"</span>;</span><br><span class="line">$login_forbidden_chars = <span class="hljs-string">"*()&amp;|"</span>;</span><br><span class="line">$ad_mode = <span class="hljs-keyword">true</span>;</span><br><span class="line">$ldap_filter = <span class="hljs-string">"(&amp;(objectClass=user)(sAMAccountName=&#123;login&#125;)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))"</span>;</span><br><span class="line">$ad_options[<span class="hljs-string">'force_unlock'</span>] = <span class="hljs-keyword">true</span>;</span><br><span class="line">$ad_options[<span class="hljs-string">'force_pwd_change'</span>] = <span class="hljs-keyword">false</span>;</span><br><span class="line">$ad_options[<span class="hljs-string">'change_expired_password'</span>] = <span class="hljs-keyword">true</span>;</span><br><span class="line">$use_change = <span class="hljs-keyword">true</span>;</span><br><span class="line">$who_change_password = <span class="hljs-string">"manager"</span>;</span><br></pre></td></tr></table></figure>
+<p>注意配置下面几项（踩了很多坑，一定不要多改，大家不要踩坑就好）：</p>
+<figure class="highlight php hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;?php</span></span><br><span class="line">$ldap_url = <span class="hljs-string">"ldaps://your_domain_ip"</span>;</span><br><span class="line">$ldap_binddn = <span class="hljs-string">"cn=Administrator,cn=Users,dc=your_domain,dc=com"</span>;</span><br><span class="line">$ldap_bindpw = <span class="hljs-string">"your_admin_password"</span>;</span><br><span class="line">$ldap_starttls = <span class="hljs-keyword">false</span>;</span><br><span class="line">$ldap_base = <span class="hljs-string">"ou=,dc=,dc=com"</span>;</span><br><span class="line">$ldap_login_attribute = <span class="hljs-string">"sAMAccountName"</span>;</span><br><span class="line">$ldap_fullname_attribute = <span class="hljs-string">"cn"</span>;</span><br><span class="line">$login_forbidden_chars = <span class="hljs-string">"*()&amp;|"</span>;</span><br><span class="line">$ad_mode = <span class="hljs-keyword">true</span>;</span><br><span class="line">$ldap_filter = <span class="hljs-string">"(&amp;(objectClass=user)(sAMAccountName=&#123;login&#125;)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))"</span>;</span><br><span class="line">$ad_options[<span class="hljs-string">'force_unlock'</span>] = <span class="hljs-keyword">true</span>;</span><br><span class="line">$ad_options[<span class="hljs-string">'force_pwd_change'</span>] = <span class="hljs-keyword">false</span>;</span><br><span class="line">$ad_options[<span class="hljs-string">'change_expired_password'</span>] = <span class="hljs-keyword">true</span>;</span><br><span class="line">$use_change = <span class="hljs-keyword">true</span>;</span><br><span class="line">$who_change_password = <span class="hljs-string">"manager"</span>;</span><br></pre></td></tr></table></figure>
 <p>Dockerfile:</p>
-<p>关闭TLS验证，防止证书验证失败导致无法连接域控服务器（同时注意部署的节点上所有的路由千万要受控）</p>
+<p>关闭TLS验证，针对自签名证书防止证书验证失败导致无法连接域控服务器（同时注意部署的节点上所有的路由千万要受控）</p>
 <figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FROM php:7.2.8-apache-stretch</span><br><span class="line"></span><br><span class="line">RUN apt update &amp;&amp; apt install -y libldap2-dev \</span><br><span class="line">		&amp;&amp; docker-php-ext-install ldap</span><br><span class="line">RUN <span class="hljs-built_in">echo</span> <span class="hljs-string">"TLS_REQCERT allow"</span> &gt; /etc/ldap/ldap.conf</span><br><span class="line">RUN curl https://ltb-project.org/archives/ltb-project-self-service-password-1.3.tar.gz|tar zxf - -C /var/www/html --strip-components=1</span><br></pre></td></tr></table></figure>
 
 <p>docker-compose.yaml:</p>
@@ -268,6 +268,13 @@
 
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/07/15/Ubuntu不启动桌面仅启动一个应用/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Ubuntu不启动桌面仅启动一个应用</span>
+            </a>
+        </div>
         
         
         <div class="level-end">
@@ -345,7 +352,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        17
+                        18
                     </p>
                 </div>
             </div>
@@ -455,7 +462,7 @@
                 <span class="level-item">RaspberryPI</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/STM32/">
@@ -550,6 +557,25 @@
         
         <article class="media">
             
+            <a href="/2020/07/15/Ubuntu不启动桌面仅启动一个应用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/stm32debug.jpg" alt="Ubuntu不启动桌面仅启动一个应用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-14T16:00:00.000Z">2020-07-15</time></div>
+                    <a href="/2020/07/15/Ubuntu不启动桌面仅启动一个应用/" class="has-link-black-ter is-size-6">Ubuntu不启动桌面仅启动一个应用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/RaspberryPI/">RaspberryPI</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/05/19/Active Directory明文密码存储/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/password.jpg" alt="Active Directory明文密码存储">
@@ -624,25 +650,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/10/09/控制系统的限制条件/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/think.jpg" alt="流水线劳动需要的智力思考">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T16:00:00.000Z">2019-10-09</time></div>
-                    <a href="/2019/10/09/控制系统的限制条件/" class="has-link-black-ter is-size-6">流水线劳动需要的智力思考</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/胡想思想/">胡想思想</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -654,6 +661,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/05/">
@@ -779,14 +797,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/嵌入式/">
                         <span class="tag">嵌入式</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/技术/">
                         <span class="tag">技术</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
@@ -850,6 +868,25 @@
         
         <article class="media">
             
+            <a href="/2020/07/15/Ubuntu不启动桌面仅启动一个应用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/stm32debug.jpg" alt="Ubuntu不启动桌面仅启动一个应用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-14T16:00:00.000Z">2020-07-15</time></div>
+                    <a href="/2020/07/15/Ubuntu不启动桌面仅启动一个应用/" class="has-link-black-ter is-size-6">Ubuntu不启动桌面仅启动一个应用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/RaspberryPI/">RaspberryPI</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/05/19/Active Directory明文密码存储/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/password.jpg" alt="Active Directory明文密码存储">
@@ -924,25 +961,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/10/09/控制系统的限制条件/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/think.jpg" alt="流水线劳动需要的智力思考">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-08T16:00:00.000Z">2019-10-09</time></div>
-                    <a href="/2019/10/09/控制系统的限制条件/" class="has-link-black-ter is-size-6">流水线劳动需要的智力思考</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/胡想思想/">胡想思想</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -954,6 +972,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/05/">
@@ -1079,14 +1108,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/嵌入式/">
                         <span class="tag">嵌入式</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/技术/">
                         <span class="tag">技术</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 

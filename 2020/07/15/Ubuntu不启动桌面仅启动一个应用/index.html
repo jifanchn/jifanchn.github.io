@@ -2,23 +2,25 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>Tag: 前端 - 十几秒的光照</title>
+<title>Ubuntu不启动桌面仅启动一个应用 - 十几秒的光照</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="记录个人生活，记录技术进阶">
-<meta property="og:type" content="website">
-<meta property="og:title" content="十几秒的光照">
-<meta property="og:url" content="http://jifachn.github.io/tags/前端/index.html">
+    <meta name="description" content="背景 系统集成的工作使用一些嵌入式开发板进行UI开发，此时最好不启动桌面，仅启动一个进程。">
+<meta name="keywords" content="嵌入式,技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu不启动桌面仅启动一个应用">
+<meta property="og:url" content="http://jifachn.github.io/2020/07/15/Ubuntu不启动桌面仅启动一个应用/index.html">
 <meta property="og:site_name" content="十几秒的光照">
-<meta property="og:description" content="记录个人生活，记录技术进阶">
+<meta property="og:description" content="背景 系统集成的工作使用一些嵌入式开发板进行UI开发，此时最好不启动桌面，仅启动一个进程。">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://jifachn.github.io/images/og_image.png">
+<meta property="og:image" content="http://jifachn.github.io/images/stm32debug.jpg">
+<meta property="og:updated_time" content="2020-07-15T13:11:05.864Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="十几秒的光照">
-<meta name="twitter:description" content="记录个人生活，记录技术进阶">
-<meta name="twitter:image" content="http://jifachn.github.io/images/og_image.png">
+<meta name="twitter:title" content="Ubuntu不启动桌面仅启动一个应用">
+<meta name="twitter:description" content="背景 系统集成的工作使用一些嵌入式开发板进行UI开发，此时最好不启动桌面，仅启动一个进程。">
+<meta name="twitter:image" content="http://jifachn.github.io/images/stm32debug.jpg">
 
 
 
@@ -92,7 +94,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/icon.ico" alt="十几秒的光照" height="28">
+                <img src="/images/icon.ico" alt="Ubuntu不启动桌面仅启动一个应用" height="28">
             
             </a>
         </div>
@@ -136,136 +138,191 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/images/stm32debug.jpg" alt="Ubuntu不启动桌面仅启动一个应用">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-07-14T16:00:00.000Z">2020-07-15</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/RaspberryPI/">RaspberryPI</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 571 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Ubuntu不启动桌面仅启动一个应用
+            
+        </h1>
+        <div class="content">
+            <hr>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><hr>
+<p>系统集成的工作使用一些嵌入式开发板进行UI开发，此时最好不启动桌面，仅启动一个进程。</p>
+<a id="more"></a>
+
+<h2 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h2><hr>
+<p>开发板：</p>
+<pre><code>米尔MYD-YA157C-V2
+
+https://item.taobao.com/item.htm?spm=a230r.1.14.16.74fe7bb7oF9dxE&amp;id=609796292798&amp;ns=1&amp;abbucket=8#detail</code></pre><p>系统：</p>
+<pre><code>myir@linux:~$ uname -a
+Linux linux 4.19.9 #1 SMP PREEMPT Wed Jan 8 08:09:26 UTC 2020 armv7l armv7l armv7l GNU/Linux
+myir@linux:~$ cat /etc/issue
+Ubuntu 18.04 LTS \n \l</code></pre><p>UI进程：</p>
+<pre><code>主程序是：
+https://github.com/fyne-io/fyne/tree/master/cmd/fyne_demo</code></pre><h2 id="UI编译过程"><a href="#UI编译过程" class="headerlink" title="UI编译过程"></a>UI编译过程</h2><p>编译工具：<br>    <a href="https://github.com/lucor/fyne-cross" target="_blank" rel="noopener">https://github.com/lucor/fyne-cross</a></p>
+<p>docker代理：</p>
+<pre><code>在systemd的docker.service内，Service段增加代理配置：
+[Service]
+Environment=&quot;HTTP_PROXY=http://127.0.0.1:2081&quot;
+
+systemctl restart docker</code></pre><p>本机golang代理：</p>
+<pre><code>配置本机环境变量，启用GO的代理（国内程序员的悲哀）：
+export GO111MODULE=on
+export GOPROXY=https://goproxy.cn</code></pre><p>交叉编译:</p>
+<pre><code>然后按照fyne-cross官网安装fyne-cross
+
+进入fynd_demo目录后，运行：
+fyne-cross linux -arch=arm -env GO111MODULE=on -env GOPROXY=https://goproxy.cn -env GO111MODULE=on
+即可交叉编译成功，二进制文件在fyne-cross/bin目录内</code></pre><h2 id="关闭默认X进程"><a href="#关闭默认X进程" class="headerlink" title="关闭默认X进程"></a>关闭默认X进程</h2><p>找到startx相关命令，注释（或者有可能是systemd进程）</p>
+<p>此开发板米尔官方提供的程序在：</p>
+<pre><code>/usr/bin/watchdog.sh</code></pre><h2 id="添加systemd配置"><a href="#添加systemd配置" class="headerlink" title="添加systemd配置"></a>添加systemd配置</h2><p>文件：</p>
+<pre><code>/etc/systemd/system/user-program.service
+
+[Unit]
+Description=User Screen Daemon
+
+[Service]
+Type=simple
+User=root
+Restart=always
+RestartSec=5s
+ExecStart=/usr/bin/xinit /home/myir/examples -- /usr/bin/X :0
+StartLimitIntervalSec=2
+StartLimitBurst=0
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target</code></pre><p>注意要用root启动，需要在应用中分配权限；必须指定Service中的最后三项，保证一直连续重启服务（HDMI如果没有插，那么此服务会失败）。</p>
+<p>用户程序是/home/myir/examples，可以修改为其它二进制文件。</p>
+<h2 id="修改启动用户权限"><a href="#修改启动用户权限" class="headerlink" title="修改启动用户权限"></a>修改启动用户权限</h2><pre><code>/etc/X11/Xwrapper.config
+
+allowed_users=anybody</code></pre><h2 id="原理及相关文档"><a href="#原理及相关文档" class="headerlink" title="原理及相关文档"></a>原理及相关文档</h2><p>X11是第11版的X程序，系统实现的是客户端和应用端。</p>
+<p>我们使用的Linux桌面系统都是基于X11的，所以只要换到中间的桥梁部分就行了（这个板子是xfce4。</p>
+<pre><code>https://en.wikipedia.org/wiki/X_Window_System
+
+https://wiki.archlinux.org/index.php/Xinit
+
+https://docstore.mik.ua/orelly/linux/run/ch11_01.htm
+
+https://unix.stackexchange.com/questions/437809/start-x-server-on-login-with-systemd</code></pre>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/嵌入式/">嵌入式</a>, <a class="has-link-grey -link" href="/tags/技术/">技术</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+<div class="addthis_inline_share_toolbox"></div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d316e9c1160c7d1"></script>
+
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">Tags</a></li>
-            <li class="is-active"><a href="#" aria-current="page">前端</a></li>
-        </ul>
-        </nav>
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>Alipay</span>
+    <div class="qrcode"><img src="/images/alipay.jpg" alt="Alipay"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>Wechat</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="Wechat"></div>
+</a>
+
+                
+        </div>
     </div>
 </div>
 
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/09/02/Hexo常用命令/" class="image is-7by1">
-            <img class="thumbnail" src="/images/frontend.jpg" alt="Hexo常用命令">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-01T16:00:00.000Z">2019-09-02</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/前端/">前端</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a few seconds read (About 74 words)
-                </span>
-                
-                
-            </div>
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/05/19/Active Directory明文密码存储/">
+                <span class="level-item">Active Directory明文密码存储</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/02/Hexo常用命令/">Hexo常用命令</a>
-            
-        </h1>
-        <div class="content">
-            <hr>
-<h2 id="Hexo介绍"><a href="#Hexo介绍" class="headerlink" title="Hexo介绍"></a>Hexo介绍</h2><hr>
-<p>Hexo是本博客使用的前端系统，文章记录常用命令，待将来查询使用。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/09/02/Hexo常用命令/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'RATyl6VnqVrJ9vdOJ7pnV4Tm-gzGzoHsz',
+        app_key: '9VbSxXpKmqWK8a7Demqi0s2f',
+        placeholder: 'Insert your comment'
+    });
+</script>
 
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/09/02/Vue.js学习-命令记录/" class="image is-7by1">
-            <img class="thumbnail" src="/images/frontend.jpg" alt="Vue.js学习-命令记录">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-01T16:00:00.000Z">2019-09-02</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/前端/">前端</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 126 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/02/Vue.js学习-命令记录/">Vue.js学习-命令记录</a>
-            
-        </h1>
-        <div class="content">
-            <hr>
-<h2 id="Vue-js介绍"><a href="#Vue-js介绍" class="headerlink" title="Vue.js介绍"></a>Vue.js介绍</h2><hr>
-<p>Vue.js是一个流行的前端框架。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/09/02/Vue.js学习-命令记录/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
     </div>
 </div>
-
-
-
-
-
-
-
-
 </div>
                 
 
@@ -1128,7 +1185,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/icon.ico" alt="十几秒的光照" height="28">
+                    <img src="/images/icon.ico" alt="Ubuntu不启动桌面仅启动一个应用" height="28">
                 
                 </a>
                 <p class="is-size-7">

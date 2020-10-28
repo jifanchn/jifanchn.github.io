@@ -2,23 +2,25 @@
 <html lang="zh">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>архивы - 十几秒的光照</title>
+<title>ESP32 Clion Windows配置 - 十几秒的光照</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta name="description" content="记录个人生活，记录技术进阶">
-<meta property="og:type" content="website">
-<meta property="og:title" content="十几秒的光照">
-<meta property="og:url" content="http://jifachn.github.io/archives/index.html">
+    <meta name="description" content="环境 ESP32提供了标准的工具链，在Linux下配置容易，但是使用Clion的IDE需要进行相当的配置，踩了一些坑记录一下。 Windows 10 WSL Clion 2020.2.4 ESP-IDF 4.2">
+<meta name="keywords" content="嵌入式,技术,ESP32">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ESP32 Clion Windows配置">
+<meta property="og:url" content="http://jifachn.github.io/2020/10/28/ESP32 Clion Windows配置/index.html">
 <meta property="og:site_name" content="十几秒的光照">
-<meta property="og:description" content="记录个人生活，记录技术进阶">
+<meta property="og:description" content="环境 ESP32提供了标准的工具链，在Linux下配置容易，但是使用Clion的IDE需要进行相当的配置，踩了一些坑记录一下。 Windows 10 WSL Clion 2020.2.4 ESP-IDF 4.2">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://jifachn.github.io/images/og_image.png">
+<meta property="og:image" content="http://jifachn.github.io/images/stm32.jpg">
+<meta property="og:updated_time" content="2020-10-28T09:11:43.856Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="十几秒的光照">
-<meta name="twitter:description" content="记录个人生活，记录技术进阶">
-<meta name="twitter:image" content="http://jifachn.github.io/images/og_image.png">
+<meta name="twitter:title" content="ESP32 Clion Windows配置">
+<meta name="twitter:description" content="环境 ESP32提供了标准的工具链，在Linux下配置容易，但是使用Clion的IDE需要进行相当的配置，踩了一些坑记录一下。 Windows 10 WSL Clion 2020.2.4 ESP-IDF 4.2">
+<meta name="twitter:image" content="http://jifachn.github.io/images/stm32.jpg">
 
 
 
@@ -92,7 +94,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/icon.ico" alt="十几秒的光照" height="28">
+                <img src="/images/icon.ico" alt="ESP32 Clion Windows配置" height="28">
             
             </a>
         </div>
@@ -102,7 +104,7 @@
                 
                 <a class="navbar-item" href="/">Home</a>
                 
-                <a class="navbar-item is-active" href="/archives">Archives</a>
+                <a class="navbar-item" href="/archives">Archives</a>
                 
                 <a class="navbar-item" href="/categories">Categories</a>
                 
@@ -135,301 +137,171 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/images/stm32.jpg" alt="ESP32 Clion Windows配置">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
         
-<div class="card widget">
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-10-27T16:00:00.000Z">2020-10-28</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/RaspberryPI/">RaspberryPI</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 518 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                ESP32 Clion Windows配置
+            
+        </h1>
+        <div class="content">
+            <hr>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><hr>
+<p>ESP32提供了标准的工具链，在Linux下配置容易，但是使用Clion的IDE需要进行相当的配置，踩了一些坑记录一下。</p>
+<pre><code>Windows 10
+WSL
+Clion 2020.2.4
+ESP-IDF 4.2</code></pre><a id="more"></a>
+
+<h2 id="WSL安装"><a href="#WSL安装" class="headerlink" title="WSL安装"></a>WSL安装</h2><p>WSL安装可参考</p>
+<pre><code>https://docs.microsoft.com/en-us/windows/wsl/install-win10</code></pre><p>如果使用WSL2的话，要使用脚本为wsl设置host名，在每次启动wsl时写入windows的host文件。</p>
+<p>不折腾的话可以使用WSL1版本。</p>
+<p>WSL内安装最新版本Ubuntu。</p>
+<h2 id="ESP工具链"><a href="#ESP工具链" class="headerlink" title="ESP工具链"></a>ESP工具链</h2><p>参考</p>
+<pre><code>https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/linux-setup.html</code></pre><p>配置工具链。</p>
+<p>一定使用文档上提供的安装路径（也就是$HOME$/esp/esp-idf），避免麻烦。</p>
+<p>如果网络git很慢，可以使用proxychains4进行代理。</p>
+<p>步骤简述如下：</p>
+<pre><code>sudo apt-get install git wget flex bison gperf python python-pip python-setuptools cmake ninja-build ccache libffi-dev libssl-dev dfu-util
+sudo apt-get install python3 python3-pip python3-setuptools
+mkdir -p ~/esp
+cd ~/esp
+git clone --recursive https://github.com/espressif/esp-idf.git
+cd ~/esp/esp-idf
+./install.sh</code></pre><p>然后在.zshrc或者.profile或者.bash_profile（视你使用的bash而定）</p>
+<p>加入</p>
+<pre><code>alias get_idf=&apos;. $HOME/esp/esp-idf/export.sh ; source ~/.espressif/python_env/idf4.2_py2.7_env/bin/activate&apos;
+alias get-idf=get_idf</code></pre><p>注意python_env这个路径要自己看一下修改成你当前的路径。</p>
+<p>然后进入wsl后，运行</p>
+<pre><code>get-idf</code></pre><p>就可以启动python虚拟环境，设置esp-idf工具链环境变量了。</p>
+<h2 id="CLION安装"><a href="#CLION安装" class="headerlink" title="CLION安装"></a>CLION安装</h2><p>具体在Jetbrains官网安装Clion最新版</p>
+<h2 id="开发目录"><a href="#开发目录" class="headerlink" title="开发目录"></a>开发目录</h2><p>从hello_world创建开发工程</p>
+<pre><code>get-idf
+cd ~/
+mkdir project
+cd project
+cp -r $IDF_PATH/examples/get-started/hello_world .</code></pre><h2 id="CLION配置"><a href="#CLION配置" class="headerlink" title="CLION配置"></a>CLION配置</h2><p><img src="/images/esp-toolchain.png" alt="ESP-TOOLCHAIN"></p>
+<p><img src="/images/esp-cmake.png" alt="ESP-CMAKE"></p>
+<p><img src="/images/esp-env.png" alt="ESP-CMAKE-ENV"></p>
+<p>注意在cmake配置中，环境变量右侧菜单打开后，要取消勾选Include system environment variables，然后在wsl内，get-idf，把IDF_PATH, PATH, VIRTUAL_ENV环境变量复制在User environment variables内。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>然后就可以右击CMakeLists.txt Reload，成功后在Build内编译了。</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/ESP32/">ESP32</a>, <a class="has-link-grey -link" href="/tags/嵌入式/">嵌入式</a>, <a class="has-link-grey -link" href="/tags/技术/">技术</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+<div class="addthis_inline_share_toolbox"></div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d316e9c1160c7d1"></script>
+
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <h3 class="tag is-link">
-        2020
-        </h3>
-        <div class="timeline">
-        
-            <article class="media">
+        <h3 class="menu-label has-text-centered">Suka dengan artikel ini? Bantu penulis dengan donasi melalui</h3>
+        <div class="buttons is-centered">
+            
                 
-                <a href="/2020/10/28/ESP32 Clion Windows配置/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="/images/stm32.jpg" alt="ESP32 Clion Windows配置">
-                    </p>
-                </a>
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>Alipay</span>
+    <div class="qrcode"><img src="/images/alipay.jpg" alt="Alipay"></div>
+</a>
+
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-10-27T16:00:00.000Z">2020-10-28</time>
-                        <a href="/2020/10/28/ESP32 Clion Windows配置/" class="has-link-black-ter is-size-6">ESP32 Clion Windows配置</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/RaspberryPI/">RaspberryPI</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
                 
-                <a href="/2020/07/15/Ubuntu不启动桌面仅启动一个应用/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="/images/stm32debug.jpg" alt="Ubuntu不启动桌面仅启动一个应用">
-                    </p>
-                </a>
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>Wechat</span>
+    <div class="qrcode"><img src="/images/wechat.jpg" alt="Wechat"></div>
+</a>
+
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-07-14T16:00:00.000Z">2020-07-15</time>
-                        <a href="/2020/07/15/Ubuntu不启动桌面仅启动一个应用/" class="has-link-black-ter is-size-6">Ubuntu不启动桌面仅启动一个应用</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/RaspberryPI/">RaspberryPI</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2020/05/19/Active Directory明文密码存储/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="/images/password.jpg" alt="Active Directory明文密码存储">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-05-18T16:00:00.000Z">2020-05-19</time>
-                        <a href="/2020/05/19/Active Directory明文密码存储/" class="has-link-black-ter is-size-6">Active Directory明文密码存储</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/软件配置/">软件配置</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2020/04/02/OpenOCD在虚拟机中使用/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="/images/stm32debug.jpg" alt="OpenOCD在虚拟机中的使用">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-04-01T16:00:00.000Z">2020-04-02</time>
-                        <a href="/2020/04/02/OpenOCD在虚拟机中使用/" class="has-link-black-ter is-size-6">OpenOCD在虚拟机中的使用</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/软件配置/">软件配置</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2020/02/01/在社区版Seafile中使用AD认证/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="/images/disk.jpg" alt="在社区版Seafile中使用AD认证">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-01-31T16:00:00.000Z">2020-02-01</time>
-                        <a href="/2020/02/01/在社区版Seafile中使用AD认证/" class="has-link-black-ter is-size-6">在社区版Seafile中使用AD认证</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/软件配置/">软件配置</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
         </div>
     </div>
 </div>
 
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="tag is-link">
-        2019
-        </h3>
-        <div class="timeline">
-        
-            <article class="media">
-                
-                <a href="/2019/10/30/为什么社会会形成组织结构/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="/images/think.jpg" alt="人类控制和自动控制系统的区别">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-10-29T16:00:00.000Z">2019-10-30</time>
-                        <a href="/2019/10/30/为什么社会会形成组织结构/" class="has-link-black-ter is-size-6">人类控制和自动控制系统的区别</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/胡想思想/">胡想思想</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/10/09/流水线劳动需要的智力/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="/images/think.jpg" alt="流水线劳动需要的智力思考">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-10-08T16:00:00.000Z">2019-10-09</time>
-                        <a href="/2019/10/09/流水线劳动需要的智力/" class="has-link-black-ter is-size-6">流水线劳动需要的智力思考</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/胡想思想/">胡想思想</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/10/09/人类控制和自动控制系统的区别/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="/images/think.jpg" alt="人类控制和自动控制系统的区别">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-10-08T16:00:00.000Z">2019-10-09</time>
-                        <a href="/2019/10/09/人类控制和自动控制系统的区别/" class="has-link-black-ter is-size-6">人类控制和自动控制系统的区别</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/胡想思想/">胡想思想</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/10/09/控制系统的限制条件/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="/images/think.jpg" alt="流水线劳动需要的智力思考">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-10-08T16:00:00.000Z">2019-10-09</time>
-                        <a href="/2019/10/09/控制系统的限制条件/" class="has-link-black-ter is-size-6">流水线劳动需要的智力思考</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/胡想思想/">胡想思想</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2019/09/10/STM32 HAL库CAN注意点/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="/images/stm32.jpg" alt="STM32 HAL库CAN注意点">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-09-09T16:00:00.000Z">2019-09-10</time>
-                        <a href="/2019/09/10/STM32 HAL库CAN注意点/" class="has-link-black-ter is-size-6">STM32 HAL库CAN注意点</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                                <div class="level-item is-size-7 is-uppercase">
-                                <a class="has-link-grey -link" href="/categories/STM32/">STM32</a> / <a class="has-link-grey -link" href="/categories/STM32/HAL库/">HAL库</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-        </div>
-    </div>
-</div>
 
-    
 
-    
 <div class="card card-transparent">
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        <div class="pagination-previous is-invisible is-hidden-mobile">
-            <a class="is-flex-grow has-text-black-ter" href="/archives/page/0/">Назад</a>
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/07/15/Ubuntu不启动桌面仅启动一个应用/">
+                <span class="level-item">Ubuntu不启动桌面仅启动一个应用</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        <div class="pagination-next">
-            <a class="is-flex-grow has-text-black-ter" href="/archives/page/2/">Далее</a>
-        </div>
-        <ul class="pagination-list is-hidden-mobile">
-            
-            <li><a class="pagination-link is-current" href="/archives/">1</a></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/archives/page/2/">2</a></li>
-            
-        </ul>
-    </nav>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Комментарии</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'RATyl6VnqVrJ9vdOJ7pnV4Tm-gzGzoHsz',
+        app_key: '9VbSxXpKmqWK8a7Demqi0s2f',
+        placeholder: 'Insert your comment'
+    });
+</script>
+
+    </div>
 </div>
 </div>
                 
@@ -1329,7 +1201,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/icon.ico" alt="十几秒的光照" height="28">
+                    <img src="/images/icon.ico" alt="ESP32 Clion Windows配置" height="28">
                 
                 </a>
                 <p class="is-size-7">
